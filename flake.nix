@@ -4,14 +4,16 @@
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
+      url = "github:CodedNil/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-cosmic, spicetify-nix }: {
+  outputs = { self, nixpkgs, nixos-cosmic, spicetify-nix }@inputs: {
     nixosConfigurations = {
       dan-nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
         modules = [
           {
             nix.settings = {

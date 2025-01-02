@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -121,7 +121,6 @@
     git
     vivaldi
     discord
-    spotify
     vscode
     starship
     atuin
@@ -130,16 +129,26 @@
     cryfs
     nautilus
     loupe
+    mpv
+    tor-browser
+    ffmpegthumbnailer
   ];
   programs.fish.enable = true;
   programs.steam.enable = true;
   programs.spicetify =
   let
-    spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
   in
   {
     enable = true;
-    theme = spicePkgs.themes.catppuccin;
+    enabledExtensions = with spicePkgs.extensions; [
+      hidePodcasts
+      shuffle
+      betterGenres
+      beautifulLyrics
+      starRatings
+    ];
+    theme = spicePkgs.themes.lucid;
   };
 
   # This value determines the NixOS release from which the default settings for stateful data, like file locations and database versions on your system were taken.
