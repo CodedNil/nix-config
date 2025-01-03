@@ -117,23 +117,35 @@
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Development
     rustup
     git
-    vivaldi
-    discord
     vscode
+    just
+
+    # Communication
+    discord
+
+    # Utilities
     starship
     atuin
     zoxide
-    just
+    seahorse
+
+    # File Management
     cryfs
+    sshfs
     nautilus
-    loupe
-    mpv
-    tor-browser
     ffmpegthumbnailer
+
+    # Media
+    vivaldi
+    tor-browser
+    mpv
+    loupe
   ];
   programs.fish.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   programs.steam.enable = true;
   programs.spicetify =
   let

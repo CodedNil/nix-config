@@ -4,7 +4,7 @@
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     spicetify-nix = {
-      url = "github:CodedNil/spicetify-nix";
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
