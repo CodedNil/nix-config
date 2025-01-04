@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -47,14 +52,14 @@
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    pulse.enable = true; 
+    pulse.enable = true;
   };
 
   # Enable OpenGL
   hardware.graphics.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
@@ -69,32 +74,100 @@
   users.users.dan = {
     isNormalUser = true;
     description = "Dan";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    packages = with pkgs; [ ];
     shell = pkgs.fish;
   };
+  home-manager.users.dan =
+    { pkgs, ... }:
+    {
+      home.packages = [ ];
+
+      # Enable git
+      programs.git = {
+        enable = true;
+        userName = "Dan Lock";
+        userEmail = "codenil@proton.me";
+      };
+
+      # Fish and it's plugins
+      programs.fish = {
+        enable = true;
+        interactiveShellInit = ''
+          set fish_greeting # Disable greeting
+        '';
+        shellAliases = {
+          raspi = "ssh dan@86.9.117.105 -p 2222";
+          ratatdan = "ssh dan@135.181.161.182";
+          ratatplex = "ssh plex@135.181.161.182";
+        };
+        functions = {
+          enc = ''
+            cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
+          '';
+
+          encu = ''
+            rm -rf ~/.cache/thumbnails
+            rm -rf ~/.local/share/Trash/files
+            rm -f ~/.bash_history
+            rm -f ~/.local/share/fish/fish_history
+            wl-copy --clear
+            atuin search --delete-it-all
+            cryfs-unmount /mnt/vault/EncMnt
+          '';
+        };
+      };
+      programs.starship = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+      programs.zoxide = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+      programs.atuin = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+
+      # MPV media player with auto loop
+      programs.mpv = {
+        enable = true;
+        config = {
+          loop-file = "inf";
+        };
+      };
+
+      # The state version is required and should stay at the version you originally installed.
+      home.stateVersion = "24.11";
+    };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # Enable nixos flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     # Development
-    rustup
-    git
-    vscode
     just
+    nixfmt-rfc-style
+    rustup
+    vscode
 
     # Communication
     discord
 
     # Utilities
-    starship
-    atuin
-    zoxide
+    bottom
+    mission-center
     seahorse
 
     # File Management
@@ -106,7 +179,6 @@
     # Media
     vivaldi
     tor-browser
-    mpv
     loupe
   ];
   environment.cosmic.excludePackages = with pkgs; [
@@ -117,20 +189,20 @@
   services.gnome.gnome-keyring.enable = true;
   programs.steam.enable = true;
   programs.spicetify =
-  let
-     spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  in
-  {
-    enable = true;
-    enabledExtensions = with spicePkgs.extensions; [
-      hidePodcasts
-      shuffle
-      betterGenres
-      beautifulLyrics
-      starRatings
-    ];
-    theme = spicePkgs.themes.lucid;
-  };
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        hidePodcasts
+        shuffle
+        betterGenres
+        beautifulLyrics
+        starRatings
+      ];
+      theme = spicePkgs.themes.lucid;
+    };
 
   # This value determines the NixOS release from which the default settings for stateful data, like file locations and database versions on your system were taken.
   system.stateVersion = "24.11";
