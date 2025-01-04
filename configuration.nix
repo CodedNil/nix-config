@@ -1,12 +1,8 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+  imports = [
+    ./hardware-configuration.nix # Include the results of the hardware scan.
     inputs.spicetify-nix.nixosModules.default
   ];
 
@@ -15,17 +11,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "dan-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/London";
+  networking.networkmanager.enable = true; # Enable networking
+  time.timeZone = "Europe/London"; # Set your time zone.
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
     LC_IDENTIFICATION = "en_GB.UTF-8";
@@ -37,30 +27,21 @@
     LC_TELEPHONE = "en_GB.UTF-8";
     LC_TIME = "en_GB.UTF-8";
   };
-
-  # Enable the wayland windowing system.
-  services.xserver.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-
-  # Enable the Cosmic Desktop Environment.
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-
-  # Enable flatpak
-  services.flatpak.enable = true;
-
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
+  # Enable the wayland windowing system.
+  services.xserver.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Enable the Cosmic Desktop Environment.
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -70,34 +51,18 @@
   };
 
   # Enable OpenGL
-  hardware.graphics = {
-    enable = true;
-  };
+  hardware.graphics.enable = true;
 
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module
-    open = true;
-
-    # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    powerManagement.enable = false; # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    powerManagement.finegrained = false; # Fine-grained power management. Turns off GPU when not in use.
+    open = true; # Use the NVidia open source kernel module
+    nvidiaSettings = true; # Enable the Nvidia settings menu, accessible via `nvidia-settings`.
+    package = config.boot.kernelPackages.nvidiaPackages.stable; # Optionally, you may need to select the appropriate driver version for your specific GPU.
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -143,6 +108,10 @@
     tor-browser
     mpv
     loupe
+  ];
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-store
+    cosmic-player
   ];
   programs.fish.enable = true;
   services.gnome.gnome-keyring.enable = true;
