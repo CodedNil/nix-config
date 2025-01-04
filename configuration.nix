@@ -70,16 +70,55 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable; # Optionally, you may need to select the appropriate driver version for your specific GPU.
   };
 
+  # Vault drive mount
+  fileSystems."/mnt/vault" = {
+    device = "/dev/disk/by-uuid/8a4efbd6-f7c4-4baf-ae29-df8f5835e127";
+    fsType = "btrfs";
+  };
+
+  # Network drive mounts
+  fileSystems."/mnt/ratatdan" = {
+    device = "dan@135.181.161.182:/home/dan";
+    fsType = "fuse.sshfs";
+    options = [
+      "_netdev"
+      "users"
+      "idmap=user"
+      "allow_other"
+      "IdentityFile=/home/dan/.ssh/id_ed25519"
+    ];
+  };
+  fileSystems."/mnt/ratat" = {
+    device = "plex@135.181.161.182:/home/plex";
+    fsType = "fuse.sshfs";
+    options = [
+      "_netdev"
+      "users"
+      "idmap=user"
+      "allow_other"
+      "IdentityFile=/home/dan/.ssh/id_ed25519"
+    ];
+  };
+  fileSystems."/mnt/raspi" = {
+    device = "dan@86.9.117.105:/home/dan";
+    fsType = "fuse.sshfs";
+    options = [
+      "_netdev"
+      "users"
+      "idmap=user"
+      "allow_other"
+      "IdentityFile=/home/dan/.ssh/id_ed25519"
+      "port=2222"
+    ];
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
     isNormalUser = true;
-    description = "Dan";
     extraGroups = [
       "networkmanager"
       "wheel"
     ];
-    packages = with pkgs; [ ];
-    shell = pkgs.fish;
   };
   home-manager.users.dan =
     { pkgs, ... }:
