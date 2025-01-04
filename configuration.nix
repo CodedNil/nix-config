@@ -216,6 +216,7 @@
     ffmpegthumbnailer
 
     # Media
+    inputs.zen-browser.packages."${system}".beta
     vivaldi
     tor-browser
     loupe
