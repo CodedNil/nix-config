@@ -44,6 +44,10 @@
   # Enable the Cosmic Desktop Environment.
   services.desktopManager.cosmic.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
+  environment.cosmic.excludePackages = with pkgs; [
+    cosmic-store
+    cosmic-player
+  ];
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -134,13 +138,17 @@
         userEmail = "codenil@proton.me";
       };
 
-      # Fish and it's plugins
+      # Fish and compatible programs
       programs.fish = {
         enable = true;
         interactiveShellInit = ''
           set fish_greeting # Disable greeting
         '';
         shellAliases = {
+          cd = "z";
+          cat = "bat";
+          ls = "eza";
+          find = "fd";
           raspi = "ssh dan@86.9.117.105 -p 2222";
           ratatdan = "ssh dan@135.181.161.182";
           ratatplex = "ssh plex@135.181.161.182";
@@ -199,41 +207,48 @@
   environment.systemPackages = with pkgs; [
     # Development
     rustup
-    vscode
-    just
     nixfmt-rfc-style
     gcc
     pkg-config
     trunk
+    nerd-fonts.fira-code
 
     # Communication
-    discord
+    (discord.override {
+      withOpenASAR = true;
+    })
     teamspeak5_client
 
     # Utilities
+    just
     bottom
     mission-center
     seahorse
+    fend
+    tokei
 
     # File Management
+    vscode
+    nautilus
     cryfs
     sshfs
-    nautilus
     ffmpegthumbnailer
+    diskonaut
+    yazi
+    eza
+    bat
+    fd
 
     # Media
     inputs.zen-browser.packages."${system}".beta
     vivaldi
     tor-browser
     loupe
+    parabolic
 
     # Gaming
     graalvm-ce
     prismlauncher
-  ];
-  environment.cosmic.excludePackages = with pkgs; [
-    cosmic-store
-    cosmic-player
   ];
   programs.fish.enable = true;
   programs.steam.enable = true;
@@ -249,6 +264,7 @@
         betterGenres
         beautifulLyrics
         starRatings
+        sectionMarker
       ];
       theme = spicePkgs.themes.lucid;
     };
