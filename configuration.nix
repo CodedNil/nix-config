@@ -119,7 +119,9 @@
       "networkmanager"
       "wheel"
     ];
+    shell = pkgs.fish;
   };
+  services.gnome.gnome-keyring.enable = true;
   home-manager.users.dan =
     { pkgs, ... }:
     {
@@ -196,13 +198,17 @@
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     # Development
-    just
-    nixfmt-rfc-style
     rustup
     vscode
+    just
+    nixfmt-rfc-style
+    gcc
+    pkg-config
+    trunk
 
     # Communication
     discord
+    teamspeak5_client
 
     # Utilities
     bottom
@@ -220,13 +226,16 @@
     vivaldi
     tor-browser
     loupe
+
+    # Gaming
+    graalvm-ce
+    prismlauncher
   ];
   environment.cosmic.excludePackages = with pkgs; [
     cosmic-store
     cosmic-player
   ];
   programs.fish.enable = true;
-  services.gnome.gnome-keyring.enable = true;
   programs.steam.enable = true;
   programs.spicetify =
     let
