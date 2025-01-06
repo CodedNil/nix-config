@@ -218,6 +218,9 @@
       withOpenASAR = true;
     })
     teamspeak5_client
+    vesktop
+    # alwaystrust, betteractivities, betterquickreact, clearurls, crashhandler, fakenitro, hometyping, membercount, mentionavatars, messagelatency, messagerloggerenhanced, messagepeek, nof1, nonitroupsell, onepingperdm, petpet, quickmention, replytimestamp, rolecoloreverywhere, showhiddenchannels, spotifycontrols, summaries, typingindicator, typingtweaks, unreadcountbadge, uservoiceshow, voicemessages, whoreacted
+
 
     # Utilities
     just
