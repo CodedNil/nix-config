@@ -234,6 +234,7 @@
     sshfs
     ffmpegthumbnailer
     diskonaut
+    baobab
     yazi
     eza
     bat
@@ -244,11 +245,16 @@
     vivaldi
     tor-browser
     loupe
+    kdePackages.okular
     parabolic
 
     # Gaming
     graalvm-ce
     prismlauncher
+
+    # Creative
+    gimp
+    inkscape
   ];
   programs.fish.enable = true;
   programs.steam.enable = true;
