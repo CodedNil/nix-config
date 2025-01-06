@@ -217,10 +217,9 @@
     (discord.override {
       withOpenASAR = true;
     })
+    equicord
+    # alwaystrust, betteractivities, betterquickreact, clearurls, crashhandler, fakenitro, hometyping, membercount, mentionavatars, messagerloggerenhanced (save images, ignore muted guilds, 567724019340541963), messagepeek, nof1, onepingperdm, quickmention, replytimestamp, rolecoloreverywhere, showhiddenchannels, spotifycontrols, summaries, typingindicator (avatars only), typingtweaks, unreadcountbadge, uservoiceshow, voicemessages, whoreacted
     teamspeak5_client
-    vesktop
-    # alwaystrust, betteractivities, betterquickreact, clearurls, crashhandler, fakenitro, hometyping, membercount, mentionavatars, messagelatency, messagerloggerenhanced, messagepeek, nof1, nonitroupsell, onepingperdm, petpet, quickmention, replytimestamp, rolecoloreverywhere, showhiddenchannels, spotifycontrols, summaries, typingindicator, typingtweaks, unreadcountbadge, uservoiceshow, voicemessages, whoreacted
-
 
     # Utilities
     just
@@ -252,8 +251,11 @@
     parabolic
 
     # Gaming
-    graalvm-ce
-    prismlauncher
+    (prismlauncher.override {
+      jdks = [
+        graalvm-ce
+      ];
+    })
 
     # Creative
     gimp
