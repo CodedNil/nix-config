@@ -1,13 +1,10 @@
 default:
-  sudo nixos-rebuild switch --flake '.#'
+  sudo nixos-rebuild switch --flake '.#dan-nixos'
 
 update:
-  sudo nix-channel --update
-u: update
-
-flake:
+  git add .
   nix flake update
-f: flake
+u: update
 
 clean:
   nix-env --delete-generations old
@@ -22,7 +19,3 @@ e: edit
 editf:
   nano flake.nix
 ef: editf
-
-setup:
-  sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos
-  sudo nix-channel --update

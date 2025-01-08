@@ -190,6 +190,17 @@
         };
       };
 
+      # Equibop discord client
+      xdg.configFile = {
+        equibopSettings = {
+          enable = true;
+          source = ./equibop;
+          target = "equibop";
+          force = true;
+          recursive = true;
+        };
+      };
+
       # The state version is required and should stay at the version you originally installed.
       home.stateVersion = "24.11";
     };
@@ -214,11 +225,7 @@
     nerd-fonts.fira-code
 
     # Communication
-    (discord.override {
-      withOpenASAR = true;
-    })
-    equicord
-    # alwaystrust, betteractivities, betterquickreact, clearurls, crashhandler, fakenitro, hometyping, membercount, mentionavatars, messagerloggerenhanced (save images, ignore muted guilds, 567724019340541963), messagepeek, nof1, onepingperdm, quickmention, replytimestamp, rolecoloreverywhere, showhiddenchannels, spotifycontrols, summaries, typingindicator (avatars only), typingtweaks, unreadcountbadge, uservoiceshow, voicemessages, whoreacted
+    equibop
     teamspeak5_client
 
     # Utilities

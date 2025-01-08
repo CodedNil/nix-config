@@ -2,11 +2,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs.follows = "nixos-cosmic/nixpkgs";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -20,8 +20,8 @@
     {
       self,
       nixpkgs,
-      nixos-cosmic,
       home-manager,
+      nixos-cosmic,
       spicetify-nix,
       zen-browser,
     }@inputs:
