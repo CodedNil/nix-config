@@ -62,9 +62,8 @@
   # Enable OpenGL
   hardware.graphics.enable = true;
 
-  # Load nvidia driver for Xorg and Wayland
+  # Load Nvidia drivers
   services.xserver.videoDrivers = [ "nvidia" ];
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false; # Nvidia power management. Experimental, and can cause sleep/suspend to fail.

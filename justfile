@@ -11,11 +11,3 @@ clean:
   sudo nix-collect-garbage -d
   sudo nix-store --optimise
 c: clean
-
-edit:
-  nano configuration.nix
-e: edit
-
-editf:
-  nano flake.nix
-ef: editf
