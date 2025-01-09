@@ -1,5 +1,9 @@
 default:
-  sudo nixos-rebuild switch --flake '.#dan-nixos'
+  sudo nixos-rebuild switch --flake '.#dan-pc'
+
+work:
+  sudo nixos-rebuild switch --flake '.#dan-work'
+w: work
 
 update:
   git add .

@@ -27,11 +27,30 @@
     }@inputs:
     {
       nixosConfigurations = {
-        dan-nixos = nixpkgs.lib.nixosSystem {
+        dan-pc = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            ./configuration.nix
+            ./common.nix
+            ./pc.nix
+
+            nixos-cosmic.nixosModules.default
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+
+            home-manager.nixosModules.home-manager
+          ];
+        };
+        dan-work = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./common.nix
+            ./work.nix
 
             nixos-cosmic.nixosModules.default
             {
