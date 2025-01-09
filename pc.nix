@@ -7,7 +7,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix # Include the results of the hardware scan.
+    ./pc-hardware.nix # Include the results of the hardware scan.
   ];
 
   networking.hostName = "dan-pc";
@@ -35,16 +35,17 @@
 
   home-manager.users.dan.programs.fish.functions = {
     enc = ''
-        cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
+      cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
     '';
     encu = ''
-        rm -rf ~/.cache/thumbnails
-        rm -rf ~/.local/share/Trash/files
-        rm -f ~/.bash_history
-        rm -f ~/.local/share/fish/fish_history
-        wl-copy --clear
-        atuin search --delete-it-all
-        cryfs-unmount /mnt/vault/EncMnt
+      rm -rf ~/.cache/thumbnails
+      rm -rf ~/.local/share/Trash/files
+      rm -rf ~/.local/share/Trash/info
+      rm -f ~/.bash_history
+      rm -f ~/.local/share/fish/fish_history
+      wl-copy --clear
+      atuin search --delete-it-all
+      cryfs-unmount /mnt/vault/EncMnt
     '';
-    };
+  };
 }

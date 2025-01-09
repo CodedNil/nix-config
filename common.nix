@@ -14,7 +14,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "dan-nixos"; # Define your hostname.
   networking.networkmanager.enable = true; # Enable networking
   time.timeZone = "Europe/London"; # Set your time zone.
 
@@ -193,6 +192,7 @@
     # Communication
     equibop
     teamspeak5_client
+    easyeffects
 
     # Utilities
     just
@@ -224,11 +224,7 @@
     parabolic
 
     # Gaming
-    (prismlauncher.override {
-      jdks = [
-        graalvm-ce
-      ];
-    })
+    prismlauncher
 
     # Creative
     gimp
