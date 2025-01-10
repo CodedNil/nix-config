@@ -112,12 +112,6 @@
             "showMode": 0,
             "channelStyle": 0
         },
-        "SpotifyControls": {
-            "enabled": true,
-            "hoverControls": true,
-            "useSpotifyUris": false,
-            "previousButtonRestartsTrack": true
-        },
         "TypingIndicator": {
             "enabled": true,
             "includeMutedChannels": false,

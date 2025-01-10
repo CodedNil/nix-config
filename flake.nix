@@ -8,6 +8,9 @@
     nixpkgs.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
+    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
+    programs.niri.package = pkgs.niri-unstable;
+
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,6 +25,7 @@
       nixpkgs,
       home-manager,
       nixos-cosmic,
+      niri,
       spicetify-nix,
       zen-browser,
     }@inputs:

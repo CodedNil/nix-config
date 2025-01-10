@@ -166,6 +166,34 @@
         };
       };
 
+      # Web Apps
+      xdg.desktopEntries.outlook = {
+        name = "Outlook";
+        exec = "vivaldi --app=https://outlook.office365.com/mail/";
+        icon = "${self}/icons/outlook.svg";
+        type = "Application";
+        categories = [ "Network" "Email" ];
+      };
+      xdg.desktopEntries.teams = {
+        name = "Teams";
+        exec = "vivaldi --app=https://teams.microsoft.com/v2/";
+        icon = "${self}/icons/teams.svg";
+        type = "Application";
+        categories = [ "Network" "Chat" ];
+      };
+      xdg.desktopEntries.todo = {
+        name = "Todo";
+        exec = "vivaldi --app=https://to-do.office.com/tasks/assigned_to_me";
+        icon = "${self}/icons/todo.svg";
+        type = "Application";
+        categories = [ "Productivity" "TaskManagement" ];
+      };
+
+      # Niri
+      programs.niri.settings = {
+        outputs."eDP-1".scale = 1.0;
+      };
+
       # The state version is required and should stay at the version you originally installed.
       home.stateVersion = "24.11";
     };
@@ -182,6 +210,7 @@
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     # Development
+    vscode
     rustup
     nixfmt-rfc-style
     gcc
@@ -190,15 +219,17 @@
     nerd-fonts.fira-code
 
     # Utilities
+    blackbox
     just
     bottom
     mission-center
     seahorse
     fend
     tokei
+    gnome-maps
+    gnome-text-editor
 
     # File Management
-    vscode
     nautilus
     cryfs
     sshfs
@@ -220,6 +251,7 @@
     loupe
     kdePackages.okular
     parabolic
+    celluloid
 
     # Communication
     equibop
