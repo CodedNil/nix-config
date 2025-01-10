@@ -189,11 +189,6 @@
     trunk
     nerd-fonts.fira-code
 
-    # Communication
-    equibop
-    teamspeak5_client
-    easyeffects
-
     # Utilities
     just
     bottom
@@ -215,13 +210,21 @@
     bat
     fd
 
-    # Media
-    inputs.zen-browser.packages."${system}".beta
+    # Browsing
+    inputs.zen-browser.packages."${system}".beta # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar
+    # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily
     vivaldi
     tor-browser
+
+    # Media
     loupe
     kdePackages.okular
     parabolic
+
+    # Communication
+    equibop
+    teamspeak5_client
+    easyeffects
 
     # Gaming
     prismlauncher
