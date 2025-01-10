@@ -8,13 +8,10 @@
     nixpkgs.follows = "nixos-cosmic/nixpkgs";
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
-    nixpkgs.overlays = [ inputs.niri.overlays.niri ];
-    programs.niri.package = pkgs.niri-unstable;
+    niri.url = "github:sodiboo/niri-flake";
 
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
@@ -30,43 +27,37 @@
       zen-browser,
     }@inputs:
     {
-      nixosConfigurations = {
-        dan-pc = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./common.nix
-            ./pc.nix
+      nixosConfigurations =
+        let
+          makeSystem =
+            path:
+            nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = { inherit inputs; };
+              modules = [
+                home-manager.nixosModules.home-manager
 
-            nixos-cosmic.nixosModules.default
-            {
-              nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-              };
-            }
+                niri.nixosModules.niri
+                { nixpkgs.overlays = [ niri.overlays.niri ]; }
 
-            home-manager.nixosModules.home-manager
-          ];
+                nixos-cosmic.nixosModules.default
+                {
+                  nix.settings = {
+                    substituters = [ "https://cosmic.cachix.org/" ];
+                    trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+                  };
+                }
+
+                spicetify-nix.nixosModules.default
+
+                ./common.nix
+                path
+              ];
+            };
+        in
+        {
+          dan-pc = makeSystem ./pc.nix;
+          dan-work = makeSystem ./work.nix;
         };
-        dan-work = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./common.nix
-            ./work.nix
-
-            nixos-cosmic.nixosModules.default
-            {
-              nix.settings = {
-                substituters = [ "https://cosmic.cachix.org/" ];
-                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-              };
-            }
-
-            home-manager.nixosModules.home-manager
-          ];
-        };
-      };
     };
 }

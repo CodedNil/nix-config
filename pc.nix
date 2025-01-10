@@ -33,19 +33,51 @@
     fsType = "btrfs";
   };
 
-  home-manager.users.dan.programs.fish.functions = {
-    enc = ''
-      cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
-    '';
-    encu = ''
-      rm -rf ~/.cache/thumbnails
-      rm -rf ~/.local/share/Trash/files
-      rm -rf ~/.local/share/Trash/info
-      rm -f ~/.bash_history
-      rm -f ~/.local/share/fish/fish_history
-      wl-copy --clear
-      atuin search --delete-it-all
-      cryfs-unmount /mnt/vault/EncMnt
-    '';
+  home-manager.users.dan = {
+    # Niri
+    programs.niri.settings.outputs = {
+      "HDMI-A-1" = {
+        mode = {
+          width = 3840;
+          height = 2160;
+          refresh = 120.0;
+        };
+        position = {
+          x = 0;
+          y = 0;
+        };
+        scale = 1.5;
+        variable-refresh-rate = true;
+      };
+      "HDMI-A-2" = {
+        mode = {
+          width = 1920;
+          height = 1080;
+          refresh = 60.0;
+        };
+        position = {
+          x = 3840;
+          y = 1080;
+        };
+        scale = 1.25;
+      };
+    };
+
+    # Fish functions
+    programs.fish.functions = {
+      enc = ''
+        cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
+      '';
+      encu = ''
+        rm -rf ~/.cache/thumbnails
+        rm -rf ~/.local/share/Trash/files
+        rm -rf ~/.local/share/Trash/info
+        rm -f ~/.bash_history
+        rm -f ~/.local/share/fish/fish_history
+        wl-copy --clear
+        atuin search --delete-it-all
+        cryfs-unmount /mnt/vault/EncMnt
+      '';
+    };
   };
 }

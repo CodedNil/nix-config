@@ -1,1 +1,268 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1007.922 821.827"><defs><style>.a{fill:#fff;}.b{fill:url(#a);}.c{mask:url(#b);}.d{fill:url(#c);}.e{mask:url(#d);}.f{fill:url(#e);}.g{fill:url(#f);}.h{mask:url(#g);}.i{fill:url(#h);}.j{fill:#195abd;}.k{fill:url(#i);}</style><linearGradient id="a" x1="700.766" y1="597.024" x2="749.765" y2="597.024" gradientTransform="translate(86.603 -142.296) scale(0.867 1.307)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-opacity="0.13"/><stop offset="0.994" stop-opacity="0"/></linearGradient><mask id="b" x="317.137" y="651.827" width="170" height="205.208" maskUnits="userSpaceOnUse"><g transform="translate(-8.064 -116.521)"><rect class="a" x="367.701" y="870.953" width="85" height="85" transform="translate(766.054 -22.512) rotate(45)"/></g></mask><radialGradient id="c" cx="410.201" cy="853.349" r="85" gradientTransform="translate(715.49 -156.637) rotate(45)" gradientUnits="userSpaceOnUse"><stop offset="0.5" stop-opacity="0.13"/><stop offset="0.994" stop-opacity="0"/></radialGradient><mask id="d" x="837.922" y="95.835" width="205.208" height="205.208" maskUnits="userSpaceOnUse"><g transform="translate(-8.064 -116.521)"><rect class="a" x="876.038" y="260.012" width="170" height="85" transform="translate(1426.685 1195.977) rotate(-135)"/></g></mask><radialGradient id="e" cx="1051.126" cy="1265.852" r="85" gradientTransform="translate(771.087 1854.394) rotate(-135)" xlink:href="#c"/><linearGradient id="f" x1="1880.8" y1="34.286" x2="1929.799" y2="34.286" gradientTransform="matrix(0.867, 0, 0, -0.796, -1446.031, 767.147)" xlink:href="#a"/><mask id="g" x="-35.208" y="299.482" width="205.208" height="205.208" maskUnits="userSpaceOnUse"><g transform="translate(-8.064 -116.521)"><rect class="a" x="-21.988" y="463.659" width="170" height="85" transform="translate(-339.453 192.807) rotate(-45)"/></g></mask><radialGradient id="h" cx="27.608" cy="2001.37" r="85" gradientTransform="matrix(0.707, -0.707, -0.707, -0.707, 1480.66, 1854.394)" xlink:href="#c"/><linearGradient id="i" x1="308.378" y1="811.629" x2="919.318" y2="200.689" gradientTransform="translate(-178.117 582.307) rotate(-45)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2987e6"/><stop offset="0.994" stop-color="#58c1f5"/></linearGradient></defs><title>Todo</title><rect class="b" x="694.422" y="269.785" width="42.5" height="736.5" transform="translate(652.71 -435.701) rotate(45)"/><g class="c"><circle class="d" cx="402.137" cy="736.827" r="85"/></g><g class="e"><circle class="f" cx="922.922" cy="216.043" r="85"/></g><rect class="g" x="185.305" y="515.608" width="42.5" height="448.5" transform="translate(867.705 1000.439) rotate(135)"/><g class="h"><circle class="i" cx="85" cy="419.69" r="85"/></g><rect class="j" x="164.378" y="319.982" width="288" height="576" rx="42.5" transform="translate(-347.651 279.609) rotate(-45)"/><rect class="k" x="469.848" y="74.159" width="288" height="864" rx="42.5" transform="translate(529.636 -402.327) rotate(45)"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 1080 1080"
+   version="1.1"
+   id="svg9"
+   sodipodi:docname="todo.svg"
+   width="1080"
+   height="1080"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.38445435"
+     inkscape:cx="426.5786"
+     inkscape:cy="512.41454"
+     inkscape:window-width="1280"
+     inkscape:window-height="758"
+     inkscape:window-x="20"
+     inkscape:window-y="20"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg9" />
+  <defs
+     id="defs6">
+    <style
+       id="style1">.a{fill:#fff;}.b{fill:url(#a);}.c{mask:url(#b);}.d{fill:url(#c);}.e{mask:url(#d);}.f{fill:url(#e);}.g{fill:url(#f);}.h{mask:url(#g);}.i{fill:url(#h);}.j{fill:#195abd;}.k{fill:url(#i);}</style>
+    <linearGradient
+       id="a"
+       x1="700.76599"
+       y1="597.02399"
+       x2="749.76501"
+       y2="597.02399"
+       gradientTransform="matrix(0.867,0,0,1.307,86.603,-142.296)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-opacity="0.13"
+         id="stop1" />
+      <stop
+         offset="0.994"
+         stop-opacity="0"
+         id="stop2" />
+    </linearGradient>
+    <mask
+       id="b"
+       x="317.137"
+       y="651.827"
+       width="170"
+       height="205.208"
+       maskUnits="userSpaceOnUse">
+      <g
+         transform="translate(-8.064,-116.521)"
+         id="g2">
+        <rect
+           class="a"
+           x="367.70099"
+           y="870.953"
+           width="85"
+           height="85"
+           transform="rotate(45,410.20139,913.45298)"
+           id="rect2" />
+      </g>
+    </mask>
+    <radialGradient
+       id="c"
+       cx="410.20099"
+       cy="853.349"
+       r="85"
+       gradientTransform="rotate(45,546.82258,785.35433)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0.5"
+         stop-opacity="0.13"
+         id="stop3" />
+      <stop
+         offset="0.994"
+         stop-opacity="0"
+         id="stop4" />
+    </radialGradient>
+    <mask
+       id="d"
+       x="837.922"
+       y="95.835"
+       width="205.208"
+       height="205.208"
+       maskUnits="userSpaceOnUse">
+      <g
+         transform="translate(-8.064,-116.521)"
+         id="g4">
+        <rect
+           class="a"
+           x="876.03802"
+           y="260.01199"
+           width="170"
+           height="85"
+           transform="rotate(-135,961.03745,302.51236)"
+           id="rect4" />
+      </g>
+    </mask>
+    <radialGradient
+       id="e"
+       cx="1051.126"
+       cy="1265.8521"
+       r="85"
+       gradientTransform="rotate(-135,769.60107,767.49965)"
+       xlink:href="#c" />
+    <linearGradient
+       id="f"
+       x1="1880.8"
+       y1="34.285999"
+       x2="1929.799"
+       y2="34.285999"
+       gradientTransform="matrix(0.90580262,0,0,-0.83162501,-1333.4924,-674.78613)"
+       xlink:href="#a" />
+    <mask
+       id="g"
+       x="-35.208"
+       y="299.482"
+       width="205.208"
+       height="205.208"
+       maskUnits="userSpaceOnUse">
+      <g
+         transform="translate(-8.064,-116.521)"
+         id="g5">
+        <rect
+           class="a"
+           x="-21.988001"
+           y="463.659"
+           width="170"
+           height="85"
+           transform="rotate(-45,63.012137,506.15952)"
+           id="rect5" />
+      </g>
+    </mask>
+    <radialGradient
+       id="h"
+       cx="27.608"
+       cy="2001.37"
+       r="85"
+       gradientTransform="matrix(0.707,-0.707,-0.707,-0.707,1480.66,1854.394)"
+       xlink:href="#c" />
+    <linearGradient
+       id="i"
+       x1="308.37799"
+       y1="811.62903"
+       x2="919.31799"
+       y2="200.689"
+       gradientTransform="matrix(0.73875337,-0.73875337,0.73875337,0.73875337,4.1307349,-0.92378984)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#2987e6"
+         id="stop5" />
+      <stop
+         offset="0.994"
+         stop-color="#58c1f5"
+         id="stop6" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#a"
+       id="linearGradient9"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.90580262,0,0,1.3654948,346.9642,-873.53313)"
+       x1="700.76599"
+       y1="597.02399"
+       x2="749.76501"
+       y2="597.02399" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#c"
+       id="radialGradient9"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="rotate(45,546.82258,785.35433)"
+       cx="410.20099"
+       cy="853.349"
+       r="85" />
+  </defs>
+  <title
+     id="title6">Todo</title>
+  <rect
+     class="b"
+     x="981.98444"
+     y="-443.00937"
+     width="44.402088"
+     height="769.4621"
+     transform="rotate(45)"
+     id="rect6"
+     style="fill:url(#linearGradient9);stroke-width:1.04475" />
+  <g
+     class="c"
+     mask="url(#b)"
+     id="g6"
+     transform="matrix(1.044755,0,0,1.044755,12,124.00405)">
+    <circle
+       class="d"
+       cx="402.13699"
+       cy="736.82703"
+       r="85"
+       id="circle6"
+       style="fill:url(#radialGradient9)" />
+  </g>
+  <g
+     class="e"
+     mask="url(#d)"
+     id="g7"
+     transform="matrix(1.044755,0,0,1.044755,12,124.00405)">
+    <circle
+       class="f"
+       cx="922.922"
+       cy="216.043"
+       r="85"
+       id="circle7"
+       style="fill:url(#e)" />
+  </g>
+  <rect
+     class="g"
+     x="370.85492"
+     y="-937.58105"
+     width="44.402088"
+     height="468.57263"
+     transform="rotate(135)"
+     id="rect7"
+     style="fill:url(#f);stroke-width:1.04475" />
+  <g
+     class="h"
+     mask="url(#g)"
+     id="g8"
+     transform="matrix(1.044755,0,0,1.044755,12,124.00405)">
+    <circle
+       class="i"
+       cx="85"
+       cy="419.69"
+       r="85"
+       id="circle8"
+       style="fill:url(#h)" />
+  </g>
+  <rect
+     class="j"
+     x="-370.85461"
+     y="380.20605"
+     width="300.88947"
+     height="601.77893"
+     rx="44.402088"
+     transform="rotate(-45)"
+     id="rect8"
+     style="stroke-width:1.04475" />
+  <rect
+     class="k"
+     x="681.09344"
+     y="-531.81561"
+     width="300.88947"
+     height="902.66833"
+     rx="44.402088"
+     transform="rotate(45)"
+     id="rect9"
+     style="fill:url(#i);stroke-width:1.04475" />
+</svg>
