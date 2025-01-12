@@ -138,6 +138,22 @@
       categories = [ "Development" ];
     };
 
+    # Shortcuts to shutdown, reboot and logout
+    xdg.desktopEntries.shutdown = {
+      name = "Shutdown";
+      exec = "systemctl poweroff";
+      icon = ./icons/shutdown.png;
+      type = "Application";
+      categories = [ "System" ];
+    };
+    xdg.desktopEntries.reboot = {
+      name = "Reboot";
+      exec = "systemctl reboot";
+      icon = ./icons/reboot.png;
+      type = "Application";
+      categories = [ "System" ];
+    };
+
     # The state version is required and should stay at the version you originally installed.
     home.stateVersion = "24.11";
   };
