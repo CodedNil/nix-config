@@ -1,5 +1,6 @@
 {
   pkgs,
+  inputs,
   ...
 }:
 
@@ -70,9 +71,8 @@
           # "~/.config/eww/launch_bar"
         ];
         prefer-no-csd = true;
-        environment.DISPLAY = ":0";
-        # input.focus-follows-mouse.enable = true;
-        input.warp-mouse-to-focus = true;
+        # environment.DISPLAY = ":0";
+        input.focus-follows-mouse.enable = true;
         window-rules = [
           {
             clip-to-geometry = true;
@@ -88,11 +88,7 @@
           "Mod+Shift+Slash".action = show-hotkey-overlay;
 
           # Application launchers
-          "Mod+D".action = spawn [
-            "sh"
-            "-c"
-            "pkill onagre || onagre"
-          ];
+          "Mod+D".action = spawn "pkill anyrun || anyrun";
           "Mod+T".action = spawn "blackbox";
           "Mod+E".action = spawn "nautilus";
           "Mod+Y".action = spawn "vivaldi";
@@ -208,6 +204,25 @@
           # V to toggle floating, shift V to switch focus between floating and tiling
           "Mod+V".action = toggle-window-floating;
           "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+
+          # Audio controls
+          "XF86AudioRaiseVolume".action = spawn [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.1+"
+          ];
+          "XF86AudioLowerVolume".action = spawn [
+            "wpctl"
+            "set-volume"
+            "@DEFAULT_AUDIO_SINK@"
+            "0.1-"
+          ];
+          "XF86AudioMute".action = spawn [
+            "wpctl"
+            "toggle-mute"
+            "@DEFAULT_AUDIO_SINK@"
+          ];
         };
       };
 
@@ -221,16 +236,57 @@
         enable = true;
         display = "HDMI-A-1";
       };
-      xdg.configFile.onagre = {
+
+      imports = [ inputs.anyrun.homeManagerModules.default ];
+      programs.anyrun = {
         enable = true;
-        source = ./onagre;
-        target = "onagre";
-        recursive = true;
+        config = {
+          x = {
+            fraction = 0.5;
+          };
+          y = {
+            fraction = 0.3;
+          };
+          width = {
+            fraction = 0.3;
+          };
+          hideIcons = false;
+          ignoreExclusiveZones = false;
+          layer = "overlay";
+          hidePluginInfo = true;
+          closeOnClick = true;
+          showResultsImmediately = false;
+          maxEntries = 20;
+
+          plugins = [
+            inputs.anyrun.packages.${pkgs.system}.applications
+            inputs.anyrun.packages.${pkgs.system}.rink
+            inputs.anyrun.packages.${pkgs.system}.shell
+            inputs.anyrun.packages.${pkgs.system}.dictionary
+            inputs.anyrun.packages.${pkgs.system}.websearch
+          ];
+        };
+
+        extraCss = builtins.readFile ./anyrun.css;
+        extraConfigFiles."dictionary.ron".text = ''
+          Config(
+            prefix: "define",
+            max_entries: 5,
+          )
+        '';
+        extraConfigFiles."websearch.ron".text = ''
+          Config(
+            prefix: "",
+            engines: [Custom(
+              name: "DuckDuckGo",
+              url: "https://duckduckgo.com/?q={}",
+            )],
+          )
+        '';
       };
     };
 
   environment.systemPackages = with pkgs; [
-    onagre
     xwayland-satellite
     wlr-randr
   ];

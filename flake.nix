@@ -10,9 +10,8 @@
 
     niri.url = "github:sodiboo/niri-flake";
 
+    anyrun.url = "github:anyrun-org/anyrun";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-    spicetify-nix.inputs.nixpkgs.follows = "nixpkgs";
-
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
@@ -23,16 +22,18 @@
       home-manager,
       nixos-cosmic,
       niri,
+      anyrun,
       spicetify-nix,
       zen-browser,
     }@inputs:
     {
       nixosConfigurations =
         let
+          system = "x86_64-linux";
           makeSystem =
             specificModule:
             nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
+              system = system;
               specialArgs = { inherit inputs; };
               modules = [
                 home-manager.nixosModules.home-manager

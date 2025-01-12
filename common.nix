@@ -102,6 +102,8 @@
     shell = pkgs.fish;
   };
   services.gnome.gnome-keyring.enable = true;
+
+  # Home manager
   home-manager.users.dan = {
     # Enable git
     programs.git = {

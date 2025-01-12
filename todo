@@ -1,7 +1,8 @@
 fix on screen display
 fix status bar
 better cursor, new icon and bigger
-fix the runner, bring back icons, make it look nicer, easier keybind
 wallpaper?
-always spawn spotify on second screen, and boot with certain windows open in certain places
 fix enc auto ending, maybe keybind to trigger with some sort of display on the status bar?
+functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
+gtk4 desktop portal file picker
+named workspaces, discord on second etc
