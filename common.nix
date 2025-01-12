@@ -129,6 +129,15 @@
       recursive = true;
     };
 
+    # NixConfig shortcut
+    xdg.desktopEntries.vscodeNixConfig = {
+      name = "VSCode Nix Config";
+      exec = "code /home/dan/nix-config";
+      icon = ./icons/nixos.svg;
+      type = "Application";
+      categories = [ "Development" ];
+    };
+
     # The state version is required and should stay at the version you originally installed.
     home.stateVersion = "24.11";
   };

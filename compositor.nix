@@ -67,12 +67,20 @@
           };
         };
         spawn-at-startup = map (cmd: { command = [ cmd ]; }) [
-          # "xwayland-satellite"
+          "xwayland-satellite"
           # "~/.config/eww/launch_bar"
         ];
+        environment = {
+          "QT_QPA_PLATFORM" = "wayland";
+          "DISPLAY" = ":2";
+        };
         prefer-no-csd = true;
-        # environment.DISPLAY = ":0";
+        hotkey-overlay.skip-at-startup = true;
         input.focus-follows-mouse.enable = true;
+        cursor = {
+          theme = "Bibata-Modern-Ice";
+          size = 24;
+        };
         window-rules = [
           {
             clip-to-geometry = true;
@@ -88,7 +96,11 @@
           "Mod+Shift+Slash".action = show-hotkey-overlay;
 
           # Application launchers
-          "Mod+D".action = spawn "pkill anyrun || anyrun";
+          "Mod+D".action = spawn [
+            "sh"
+            "-c"
+            "pkill anyrun || anyrun"
+          ];
           "Mod+T".action = spawn "blackbox";
           "Mod+E".action = spawn "nautilus";
           "Mod+Y".action = spawn "vivaldi";
@@ -205,23 +217,57 @@
           "Mod+V".action = toggle-window-floating;
           "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
+          # Capslock
+          # "Caps_Lock".action = spawn [
+          #   "swayosd-client"
+          #   "--caps-lock"
+          #   "toggle"
+          # ];
+
           # Audio controls
           "XF86AudioRaiseVolume".action = spawn [
-            "wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.1+"
+            "swayosd-client"
+            "--output-volume"
+            "raise"
           ];
           "XF86AudioLowerVolume".action = spawn [
-            "wpctl"
-            "set-volume"
-            "@DEFAULT_AUDIO_SINK@"
-            "0.1-"
+            "swayosd-client"
+            "--output-volume"
+            "lower"
           ];
           "XF86AudioMute".action = spawn [
-            "wpctl"
-            "toggle-mute"
-            "@DEFAULT_AUDIO_SINK@"
+            "swayosd-client"
+            "--output-volume"
+            "mute-toggle"
+          ];
+          "XF86AudioMicMute".action = spawn [
+            "swayosd-client"
+            "--input-volume"
+            "mute-toggle"
+          ];
+          "XF86AudioPlay".action = spawn [
+            "playerctl"
+            "play-pause"
+          ];
+          "XF86AudioPrev".action = spawn [
+            "playerctl"
+            "previous"
+          ];
+          "XF86AudioNext".action = spawn [
+            "playerctl"
+            "next"
+          ];
+
+          # Brightness
+          "XF86MonBrightnessUp".action = spawn [
+            "swayosd-client"
+            "--brightness"
+            "raise"
+          ];
+          "XF86MonBrightnessDown".action = spawn [
+            "swayosd-client"
+            "--brightness"
+            "lower"
           ];
         };
       };
@@ -268,6 +314,12 @@
         };
 
         extraCss = builtins.readFile ./anyrun.css;
+        extraConfigFiles."shell.ron".text = ''
+          Config(
+            prefix: "",
+            shell: Some("fish"),
+          )
+        '';
         extraConfigFiles."dictionary.ron".text = ''
           Config(
             prefix: "define",
@@ -287,6 +339,7 @@
     };
 
   environment.systemPackages = with pkgs; [
+    bibata-cursors
     xwayland-satellite
     wlr-randr
   ];

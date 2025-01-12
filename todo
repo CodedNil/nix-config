@@ -1,8 +1,10 @@
-fix on screen display
-fix status bar
-better cursor, new icon and bigger
+fix status bar https://github.com/elkowar/eww/
 wallpaper?
 fix enc auto ending, maybe keybind to trigger with some sort of display on the status bar?
 functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 gtk4 desktop portal file picker
 named workspaces, discord on second etc
+osd for switching music tracks
+spotify extensions working, theme settings, star ratings settings etc
+default app configs https://wiki.nixos.org/wiki/Default_applications
+super key alone for launcher
