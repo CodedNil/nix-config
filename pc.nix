@@ -35,6 +35,18 @@
 
   home-manager.users.dan = {
     # Niri
+
+    # +------------------------------------+
+    # |                                    |
+    # |              HDMI-A-1              |
+    # |            3840x2160@120           |
+    # |                                    |
+    # |                                    | +--------------+
+    # |                                    | |   HDMI-A-2   |
+    # |                                    | | 1920x1080@60 |
+    # |                                    | |              |
+    # +------------------------------------+ +--------------+
+
     programs.niri.settings.outputs = {
       "HDMI-A-1" = {
         mode = {
@@ -46,8 +58,9 @@
           x = 0;
           y = 0;
         };
-        scale = 1.5;
+        scale = 1.25;
         variable-refresh-rate = true;
+        background-color = "#000000";
       };
       "HDMI-A-2" = {
         mode = {
@@ -55,23 +68,67 @@
           height = 1080;
           refresh = 60.0;
         };
-        position = {
-          x = 3840;
-          y = 1080;
-        };
+        position =
+          let
+            scale = 1.25;
+          in
+          {
+            x = builtins.floor (3840 / scale);
+            y = builtins.floor (1080 / scale);
+          };
         scale = 1.25;
+        background-color = "#000000";
       };
     };
+    programs.niri.settings.window-rules = [
+      {
+        matches = [
+          {
+            app-id = "spotify";
+          }
+        ];
+        open-on-output = "HDMI-A-2";
+        open-maximized = false;
+        open-fullscreen = true;
+        open-floating = false;
+        open-focused = false;
+      }
+    ];
+    programs.niri.settings.spawn-at-startup = map (cmd: { command = [ cmd ]; }) [
+      "spotify"
+    ];
 
     # Fish functions
     programs.fish.functions = {
       enc = ''
+        # Mount using cryfs
         cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
+
+        # Set up a trap to run clean-up when the script is interrupted
+        function cleanup --on-event fish_exit
+          echo "Cleaning up..."
+          rm -rf ~/.cache/thumbnails/*
+          rm -rf ~/.local/share/Trash/files/*
+          rm -rf ~/.local/share/Trash/info/*
+          rm -f ~/.bash_history
+          rm -f ~/.local/share/fish/fish_history
+          wl-copy --clear
+          atuin search --delete-it-all
+          cryfs-unmount /mnt/vault/EncMnt
+          exit 0
+        end
+        trap cleanup EXIT
+
+        # Wait indefinitely until interrupted
+        echo "Vault mounted. Press Ctrl+C to unmount and clean up."
+        while true
+          sleep 1
+        end
       '';
       encu = ''
-        rm -rf ~/.cache/thumbnails
-        rm -rf ~/.local/share/Trash/files
-        rm -rf ~/.local/share/Trash/info
+        rm -rf ~/.cache/thumbnails/*
+        rm -rf ~/.local/share/Trash/files/*
+        rm -rf ~/.local/share/Trash/info/*
         rm -f ~/.bash_history
         rm -f ~/.local/share/fish/fish_history
         wl-copy --clear

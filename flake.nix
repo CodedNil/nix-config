@@ -30,7 +30,7 @@
       nixosConfigurations =
         let
           makeSystem =
-            path:
+            specificModule:
             nixpkgs.lib.nixosSystem {
               system = "x86_64-linux";
               specialArgs = { inherit inputs; };
@@ -51,7 +51,9 @@
                 spicetify-nix.nixosModules.default
 
                 ./common.nix
-                path
+                ./compositor.nix
+                ./shell.nix
+                specificModule
               ];
             };
         in

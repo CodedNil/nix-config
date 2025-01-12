@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+# Define constants for file paths and commands
+CACHE_FILE="$HOME/.cache/eww_launch.xyz"
+EWW_CMD="eww -c $HOME/.config/eww"
+
+# Function to launch Eww daemon if it's not running
+start_eww_daemon() {
+    if ! pgrep -x "eww" > /dev/null; then
+        ${EWW_CMD} daemon
+        sleep 1
+    fi
+}
+
+# Main logic to launch or close widgets
+toggle_widgets() {
+    if [[ ! -f "$CACHE_FILE" ]]; then
+        touch "$CACHE_FILE"
+        ${EWW_CMD} open-many bar
+    else
+        ${EWW_CMD} close-all
+        pkill eww
+        rm "$CACHE_FILE"
+    fi
+}
+
+# Execute functions
+start_eww_daemon
+toggle_widgets
