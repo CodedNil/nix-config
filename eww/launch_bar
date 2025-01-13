@@ -11,5 +11,5 @@ fi
 
 # Refresh widgets by closing all and reopening them
 ${EWW_CMD} close-all
-pkill -x eww
-${EWW_CMD} open-many bar
+# pkill -x eww
+${EWW_CMD} open bar

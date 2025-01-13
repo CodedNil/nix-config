@@ -1,12 +1,21 @@
 #!/bin/sh
 
-if command -v pamixer &>/dev/null; then
-    if [ true == $(pamixer --get-mute) ]; then
-        echo 0
-        exit
-    else
-        pamixer --get-volume
-    fi
+# Ensure wpctl is available
+if ! command -v wpctl &>/dev/null; then
+    echo "wpctl is not available on this system."
+    exit 1
+fi
+
+# Fetch volume and mute status in one call
+VOLUME_OUTPUT=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+
+# Extract volume and mute status
+VOLUME=$(echo "$VOLUME_OUTPUT" | awk '{print int($2 * 100)}')
+MUTE=$(echo "$VOLUME_OUTPUT" | grep -o "MUTE")
+
+# Output based on mute status
+if [ "$MUTE" = "MUTE" ]; then
+    echo 0
 else
-    amixer -D pulse sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'
+    echo "$VOLUME"
 fi

@@ -66,7 +66,7 @@
             inactive.color = "#505050";
           };
 
-          struts.bottom = 20;
+          struts.bottom = 30;
         };
         spawn-at-startup = [
           {
