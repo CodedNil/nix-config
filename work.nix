@@ -158,5 +158,18 @@
         "ProjectManagement"
       ];
     };
+
+    # Nautilus file manager bookmarks
+    xdg.configFile."gtk-3.0/bookmarks".text = ''
+      file:///home/dan/Downloads Downloads
+      file:///home/dan/Documents Documents
+      file:///mnt/raspi raspi
+      file:///mnt/ratat ratat
+      file:///mnt/ratatdan ratatdan
+      file:///mnt/ratatdan/Adept-Messaging-Site Adept-Messaging-Site
+      file:///mnt/ratatdan/PageDesigner PageDesigner
+      file:///mnt/onedrive/Artwork Artwork
+      file:///home/dan/Documents/tech_auditor tech_auditor
+    '';
   };
 }

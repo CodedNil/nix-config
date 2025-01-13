@@ -129,5 +129,14 @@
       atuin search --delete-it-all
       cryfs-unmount /mnt/vault/EncMnt
     '';
+
+    # Nautilus file manager bookmarks
+    xdg.configFile."gtk-3.0/bookmarks".text = ''
+      file:///home/dan/Downloads Downloads
+      file:///home/dan/Documents Documents
+      file:///mnt/raspi raspi
+      file:///mnt/ratat ratat
+      file:///mnt/ratatdan ratatdan
+    '';
   };
 }

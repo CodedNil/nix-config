@@ -102,6 +102,7 @@
     shell = pkgs.fish;
   };
   services.gnome.gnome-keyring.enable = true;
+  programs.dconf.enable = true;
 
   # Home manager
   home-manager.users.dan = {
@@ -154,6 +155,27 @@
       categories = [ "System" ];
     };
 
+    # Nautilus settings
+    home.file."Templates/text.txt".text = '';
+    programs.dconf.settings = {
+      "org/gtk/gtk4/settings/file-chooser" = {
+        "show-hidden" = true;
+        "sort-directories-first" = true;
+      };
+      "org/gnome/nautilus/icon-view" = {
+        "default-zoom-level" = "extra-large";
+      };
+      "org/gnome/nautilus/list-view" = {
+        "default-zoom-level" = "large";
+      };
+      "org/gnome/nautilus/preferences" = {
+        "default-folder-viewer" = "icon-view";
+      };
+    };
+
+    # EasyEffects for noise suppression on mic
+    services.easyeffects.enable = true;
+
     # The state version is required and should stay at the version you originally installed.
     home.stateVersion = "24.11";
   };
@@ -201,7 +223,6 @@
       withEquicord = true;
     })
     teamspeak5_client
-    easyeffects
 
     # Gaming
     prismlauncher
