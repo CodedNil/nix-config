@@ -65,10 +65,22 @@
             active.color = "#ffc87f";
             inactive.color = "#505050";
           };
+
+          struts.bottom = 20;
         };
-        spawn-at-startup = map (cmd: { command = [ cmd ]; }) [
-          "xwayland-satellite"
-          # "~/.config/eww/launch_bar"
+        spawn-at-startup = [
+          {
+            command = [
+              "xwayland-satellite"
+            ];
+          }
+          {
+            command = [
+              "sh"
+              "-c"
+              "~/.config/eww/launch_bar"
+            ];
+          }
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";
@@ -103,7 +115,7 @@
           ];
           "Mod+T".action = spawn "blackbox";
           "Mod+E".action = spawn "nautilus";
-          "Mod+Y".action = spawn "vivaldi";
+          "Mod+W".action = spawn "vivaldi";
           "Mod+S".action = spawn "spotify";
           "Ctrl+Alt+Delete".action = spawn "missioncenter";
 

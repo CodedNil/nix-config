@@ -90,8 +90,12 @@
         open-focused = false;
       }
     ];
-    programs.niri.settings.spawn-at-startup = map (cmd: { command = [ cmd ]; }) [
-      "spotify"
+    programs.niri.settings.spawn-at-startup = [
+      {
+        command = [
+          "spotify"
+        ];
+      }
     ];
 
     # Fish functions

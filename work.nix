@@ -118,10 +118,24 @@
         open-focused = false;
       }
     ];
-    programs.niri.settings.spawn-at-startup = map (cmd: { command = [ cmd ]; }) [
-      "vivaldi"
-      "vivaldi --app=https://outlook.office365.com/mail/"
-      "vivaldi --app=https://to-do.office.com/tasks/assigned_to_me"
+    programs.niri.settings.spawn-at-startup = [
+      {
+        command = [
+          "vivaldi"
+        ];
+      }
+      {
+        command = [
+          "vivaldi"
+          "--app=https://outlook.office365.com/mail/"
+        ];
+      }
+      {
+        command = [
+          "vivaldi"
+          "--app=https://to-do.office.com/tasks/assigned_to_me"
+        ];
+      }
     ];
 
     # Web Apps

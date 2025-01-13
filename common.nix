@@ -92,6 +92,9 @@
   # Enable polkit agent
   security.soteria.enable = true;
 
+  # Disable documentation building
+  documentation.enable = false;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
     isNormalUser = true;
