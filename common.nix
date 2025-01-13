@@ -204,8 +204,7 @@
     baobab
 
     # Browsing
-    inputs.zen-browser.packages."${system}".beta # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar
-    # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily
+    inputs.zen-browser.packages."${system}".beta
     vivaldi
     tor-browser
 

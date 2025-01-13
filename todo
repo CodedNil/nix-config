@@ -1,12 +1,18 @@
 fix status bar https://github.com/elkowar/eww/
-wallpaper?
-fix enc auto ending, maybe keybind to trigger with some sort of display on the status bar?
+
 functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
-gtk4 desktop portal file picker
 named workspaces, discord on second etc
-osd for switching music tracks
-spotify extensions working, theme settings, star ratings settings etc
-default app configs https://wiki.nixos.org/wiki/Default_applications
 super key alone for launcher
-discord fix the startup animation https://nixos.wiki/wiki/Discord
+
+osd for switching music tracks
+
+spotify extensions working, theme settings, star ratings settings etc
+
+default app configs https://wiki.nixos.org/wiki/Default_applications
 bookmarks in nautilus
+gtk4 desktop portal file picker
+fix enc auto ending, maybe keybind to trigger with some sort of display on the status bar?
+
+discord fix the startup animation https://nixos.wiki/wiki/Discord
+
+zen browser mods and settings # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily

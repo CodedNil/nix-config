@@ -8,9 +8,7 @@
     # Fish and compatible programs
     programs.fish = {
       enable = true;
-      interactiveShellInit = ''
-        set fish_greeting # Disable greeting
-      '';
+      interactiveShellInit = "set fish_greeting";
       shellAliases = {
         cd = "z";
         cat = "bat";
@@ -33,6 +31,14 @@
       enable = true;
       enableFishIntegration = true;
     };
+    programs.yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    programs.eza = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   programs.fish.enable = true;
@@ -43,15 +49,12 @@
 
     just
     bottom
-    fend
     tokei
     wl-clipboard
 
     cryfs
     sshfs
 
-    yazi
-    eza
     bat
     fd
   ];
