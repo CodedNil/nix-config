@@ -156,8 +156,8 @@
     };
 
     # Nautilus settings
-    home.file."Templates/text.txt".text = '';
-    programs.dconf.settings = {
+    home.file."Templates/text.txt".text = "";
+    dconf.settings = {
       "org/gtk/gtk4/settings/file-chooser" = {
         "show-hidden" = true;
         "sort-directories-first" = true;
@@ -196,12 +196,14 @@
     mission-center
     blackbox-terminal
     seahorse
+    mousam
 
     # File Management
     nautilus
     ffmpegthumbnailer
     diskonaut
     baobab
+    snoop
 
     # Browsing
     inputs.zen-browser.packages."${system}".beta
@@ -216,11 +218,11 @@
 
     # Communication
     equibop
-    (discord.override {
-      withOpenASAR = true;
-      # withVencord = true;
-      withEquicord = true;
-    })
+    # (discord.override {
+    #   withOpenASAR = true;
+    #   # withVencord = true;
+    #   withEquicord = true;
+    # })
     teamspeak5_client
 
     # Gaming

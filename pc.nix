@@ -102,38 +102,26 @@
       # Set up a trap to run clean-up when the script is interrupted
       function cleanup
         echo "Cleaning up..."
-        rm -rf ~/.cache/thumbnails/*
-        rm -rf ~/.local/share/Trash/files/*
-        rm -rf ~/.local/share/Trash/info/*
+        rm -rf ~/.cache/thumbnails
+        rm -rf ~/.local/share/Trash
         rm -f ~/.bash_history
         rm -f ~/.local/share/fish/fish_history
         wl-copy --clear
         atuin search --delete-it-all
         cryfs-unmount /mnt/vault/EncMnt
-        exit 0
       end
       trap cleanup EXIT
 
       # Wait indefinitely until interrupted
-      echo "Vault mounted. Press Ctrl+C to unmount and clean up."
-      read -P "Press Ctrl+C to stop..."
+      read -P "Vault mounted. Press Ctrl+C to unmount and clean up."
       cleanup
-    '';
-    programs.fish.functions.encu = ''
-      rm -rf ~/.cache/thumbnails/*
-      rm -rf ~/.local/share/Trash/files/*
-      rm -rf ~/.local/share/Trash/info/*
-      rm -f ~/.bash_history
-      rm -f ~/.local/share/fish/fish_history
-      wl-copy --clear
-      atuin search --delete-it-all
-      cryfs-unmount /mnt/vault/EncMnt
     '';
 
     # Nautilus file manager bookmarks
     xdg.configFile."gtk-3.0/bookmarks".text = ''
       file:///home/dan/Downloads Downloads
       file:///home/dan/Documents Documents
+      file:///mnt/vault vault
       file:///mnt/raspi raspi
       file:///mnt/ratat ratat
       file:///mnt/ratatdan ratatdan

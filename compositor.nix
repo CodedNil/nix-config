@@ -105,9 +105,9 @@
           "Mod+E".action = spawn "nautilus";
           "Mod+Y".action = spawn "vivaldi";
           "Mod+S".action = spawn "spotify";
+          "Ctrl+Alt+Delete".action = spawn "missioncenter";
 
           "Mod+Q".action = close-window;
-          "Mod+Escape".action = close-window;
 
           # Print screen to take screenshot
           "Print".action = screenshot;
@@ -115,8 +115,7 @@
           "Alt+Print".action = screenshot-window;
 
           # Keybinds to exit
-          "Mod+Shift+E".action = quit;
-          "Ctrl+Alt+Delete".action = quit;
+          "Mod+Escape".action = quit;
           "Mod+Shift+P".action = power-off-monitors;
 
           # Arrow keys to move focus, shift to move window with it
@@ -314,6 +313,13 @@
         };
 
         extraCss = builtins.readFile ./anyrun.css;
+        extraConfigFiles."applications.ron".text = ''
+          Config(
+            desktop_actions: true,
+            max_entries: 5,
+            terminal: None,
+          )
+        '';
         extraConfigFiles."shell.ron".text = ''
           Config(
             prefix: "",
