@@ -161,7 +161,6 @@
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     # Development
-    vscode
     rustup
     nixfmt-rfc-style
     gcc
@@ -169,6 +168,7 @@
     trunk
 
     # Misc
+    vscode
     gnome-maps
     gnome-text-editor
     mission-center
@@ -195,6 +195,11 @@
 
     # Communication
     equibop
+    (discord.override {
+      withOpenASAR = true;
+      # withVencord = true;
+      withEquicord = true;
+    })
     teamspeak5_client
     easyeffects
 

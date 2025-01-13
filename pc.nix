@@ -68,14 +68,10 @@
           height = 1080;
           refresh = 60.0;
         };
-        position =
-          let
-            scale = 1.25;
-          in
-          {
-            x = builtins.floor (3840 / scale);
-            y = builtins.floor (1080 / scale);
-          };
+        position = {
+          x = builtins.floor (3840 / 1.25);
+          y = builtins.floor (1080 / 1.25);
+        };
         scale = 1.25;
         background-color = "#000000";
       };
@@ -99,33 +95,13 @@
     ];
 
     # Fish functions
-    programs.fish.functions = {
-      enc = ''
-        # Mount using cryfs
-        cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
+    programs.fish.functions.enc = ''
+      # Mount using cryfs
+      cryfs /mnt/vault/Enc /mnt/vault/EncMnt --blocksize 131072
 
-        # Set up a trap to run clean-up when the script is interrupted
-        function cleanup --on-event fish_exit
-          echo "Cleaning up..."
-          rm -rf ~/.cache/thumbnails/*
-          rm -rf ~/.local/share/Trash/files/*
-          rm -rf ~/.local/share/Trash/info/*
-          rm -f ~/.bash_history
-          rm -f ~/.local/share/fish/fish_history
-          wl-copy --clear
-          atuin search --delete-it-all
-          cryfs-unmount /mnt/vault/EncMnt
-          exit 0
-        end
-        trap cleanup EXIT
-
-        # Wait indefinitely until interrupted
-        echo "Vault mounted. Press Ctrl+C to unmount and clean up."
-        while true
-          sleep 1
-        end
-      '';
-      encu = ''
+      # Set up a trap to run clean-up when the script is interrupted
+      function cleanup
+        echo "Cleaning up..."
         rm -rf ~/.cache/thumbnails/*
         rm -rf ~/.local/share/Trash/files/*
         rm -rf ~/.local/share/Trash/info/*
@@ -134,7 +110,24 @@
         wl-copy --clear
         atuin search --delete-it-all
         cryfs-unmount /mnt/vault/EncMnt
-      '';
-    };
+        exit 0
+      end
+      trap cleanup EXIT
+
+      # Wait indefinitely until interrupted
+      echo "Vault mounted. Press Ctrl+C to unmount and clean up."
+      read -P "Press Ctrl+C to stop..."
+      cleanup
+    '';
+    programs.fish.functions.encu = ''
+      rm -rf ~/.cache/thumbnails/*
+      rm -rf ~/.local/share/Trash/files/*
+      rm -rf ~/.local/share/Trash/info/*
+      rm -f ~/.bash_history
+      rm -f ~/.local/share/fish/fish_history
+      wl-copy --clear
+      atuin search --delete-it-all
+      cryfs-unmount /mnt/vault/EncMnt
+    '';
   };
 }

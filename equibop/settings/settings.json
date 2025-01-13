@@ -60,6 +60,9 @@
         "FullSearchContext": {
             "enabled": true
         },
+        "LimitMiddleClickPaste": {
+            "enabled": true
+        },
         "MemberCount": {
             "enabled": true,
             "memberList": true,
