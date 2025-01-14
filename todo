@@ -7,15 +7,16 @@ osd for switching music tracks
 https://github.com/YaLTeR/niri/wiki/IPC
 https://github.com/saimoomedits/eww-widgets
 
+daily updater script that autoruns, compares query of packages before and after then adds changes to a file logging it like spotify 1.05 > 1.06
+then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
+
 cleaner notification daemon styling https://github.com/Toqozz/wired-notify
 
-functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 named workspaces, discord on second etc
 super key alone for launcher
 
-spotify extensions working, theme settings, star ratings settings etc
-https://spicetify.app/docs/development/api-wrapper/methods/local-storage/
 https://github.com/Gerg-L/spicetify-nix/issues/245
+Fix lucid theme settings https://github.com/sanoojes/Spicetify-Lucid/issues/91
 
 default app configs https://wiki.nixos.org/wiki/Default_applications
 gtk4 desktop portal file picker

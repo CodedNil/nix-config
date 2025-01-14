@@ -94,6 +94,7 @@
 
   # Disable building documentation
   documentation.enable = false;
+  documentation.man.generateCaches = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
@@ -124,14 +125,30 @@
       };
     };
 
-    # Equibop discord client
-    xdg.configFile.equibop = {
-      enable = true;
-      source = ./configs/equibop;
-      target = "equibop";
-      force = true;
-      recursive = true;
-    };
+    imports = [
+      ./configs/discord.nix
+    ];
+
+    # Spicetify
+    programs.spicetify =
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        alwaysEnableDevTools = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          hidePodcasts
+          shuffle
+          beautifulLyrics
+          starRatings
+          ({
+            src = ./configs;
+            name = "spicetify.js";
+          })
+        ];
+        theme = spicePkgs.themes.lucid;
+      };
 
     # NixConfig shortcut
     xdg.desktopEntries.vscodeNixConfig = {
@@ -146,14 +163,14 @@
     xdg.desktopEntries.shutdown = {
       name = "Shutdown";
       exec = "systemctl poweroff";
-      icon = ./icons/shutdown.png;
+      icon = ./icons/shutdown.svg;
       type = "Application";
       categories = [ "System" ];
     };
     xdg.desktopEntries.reboot = {
       name = "Reboot";
       exec = "systemctl reboot";
-      icon = ./icons/reboot.png;
+      icon = ./icons/reboot.svg;
       type = "Application";
       categories = [ "System" ];
     };
@@ -191,6 +208,7 @@
     gcc
     pkg-config
     trunk # RUST To compile WASM apps
+    jq # C Command line JSON processor
 
     # Misc
     vscode # CSS JS Code editor
@@ -221,53 +239,16 @@
     celluloid # GTK4 C Video player
 
     # Communication
-    equibop # TODO Remove this
-
-    openasar # Speeds up discord startup
-    equicord # Adds mods to discord
-    discord.overrideAttrs (oldAttrs: rec {
-      postInstall = ''
-        # Apply OpenASAR
-        cp -f ${openasar} $out/opt/${oldAttrs.binaryName}/resources/app.asar
-
-        # Apply Equicord
-        mv $out/opt/${oldAttrs.binaryName}/resources/app.asar $out/opt/${oldAttrs.binaryName}/resources/_app.asar
-        mkdir $out/opt/${oldAttrs.binaryName}/resources/app.asar
-        
-        # Set up Equicord's patching script
-        echo '{"name":"discord","main":"index.js"}' > $out/opt/${oldAttrs.binaryName}/resources/app.asar/package.json
-        echo 'require("${equicord}/patcher.js")' > $out/opt/${oldAttrs.binaryName}/resources/app.asar/index.js
-      '';
-    })
-    
-    teamspeak5_client
+    teamspeak5_client # Voice chat client
 
     # Gaming
     prismlauncher # Minecraft launcher
 
     # Creative
-    gimp # Image editor
-    inkscape # Vector editor
+    gimp # GTK3 C Image editor
+    inkscape # GTK3 C++ Vector editor
   ];
   programs.steam.enable = true;
-  programs.spicetify =
-    let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in
-    {
-      enable = true;
-      enabledExtensions = with spicePkgs.extensions; [
-        hidePodcasts
-        shuffle
-        # beautifulLyrics
-        starRatings
-        ({
-            src = ./configs/spotify
-            name = "overrides.js";
-        })
-      ];
-      theme = spicePkgs.themes.lucid;
-    };
 
   # This value determines the NixOS release from which the default settings for stateful data, like file locations and database versions on your system were taken.
   system.stateVersion = "24.11";

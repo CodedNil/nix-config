@@ -12,6 +12,7 @@
 
     anyrun.url = "github:anyrun-org/anyrun";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+    nixcord.url = "github:kaylorben/nixcord";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
   };
 
@@ -24,6 +25,7 @@
       niri,
       anyrun,
       spicetify-nix,
+      nixcord,
       zen-browser,
     }@inputs:
     {
@@ -37,6 +39,15 @@
               specialArgs = { inherit inputs; };
               modules = [
                 home-manager.nixosModules.home-manager
+                {
+                  home-manager.useGlobalPkgs = true;
+                  home-manager.useUserPackages = true;
+
+                  home-manager.sharedModules = [
+                    nixcord.homeManagerModules.nixcord
+                    spicetify-nix.homeManagerModules.default
+                  ];
+                }
 
                 niri.nixosModules.niri
                 { nixpkgs.overlays = [ niri.overlays.niri ]; }
@@ -48,8 +59,6 @@
                     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
                   };
                 }
-
-                spicetify-nix.nixosModules.default
 
                 ./common.nix
                 ./compositor.nix

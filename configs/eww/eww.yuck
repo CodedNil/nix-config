@@ -22,46 +22,45 @@
     (button :onclick "niri msg action focus-workspace 2" 2)
     (button :onclick "niri msg action focus-workspace 3" 3)
     (button :onclick "niri msg action focus-workspace 4" 4)
-    (button :onclick "niri msg action focus-workspace 5" 5)
-    
-    (defwidget music []
-      (box :class "music"
-        :orientation "h"
-        :space-evenly false
-        :halign "center"
-      {music != "" ? "🎵${music}" : ""}))
-    
-    
-    (defwidget metric [label value onchange]
-      (box :orientation "h"
-        :class "metric"
-        :space-evenly false
-        (box :class "label" label)
-        (scale :min 0
-          :max 101
-          :active {onchange != ""}
-          :value value
-        :onchange onchange)))
-    
-    
-    
-    (deflisten music :initial ""
-    "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
-    
-    (defpoll volume :interval "1s"
-    "scripts/getvol")
-    
-    (defpoll time :interval "10s"
-    "date '+%H:%M - %A %d %B'")
-    
-    (defwindow bar
-      :monitor "LG TV SSCR2"
-      :stacking "fg"
-      :windowtype "dock"
-      :geometry (geometry :x "0%"
-        :y "0%"
-        :width "100%"
-        :height "10px"
-      :anchor "bottom center")
-      (bar))
-    
+    (button :onclick "niri msg action focus-workspace 5" 5)))
+
+(defwidget music []
+  (box :class "music"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+  {music != "" ? "🎵${music}" : ""}))
+
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+    :class "metric"
+    :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+      :max 101
+      :active {onchange != ""}
+      :value value
+    :onchange onchange)))
+
+
+
+(deflisten music :initial ""
+"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll volume :interval "1s"
+"scripts/getvol")
+
+(defpoll time :interval "10s"
+"date '+%H:%M - %A %d %B'")
+
+(defwindow bar
+  :monitor "LG TV SSCR2"
+  :stacking "fg"
+  :windowtype "dock"
+  :geometry (geometry :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "10px"
+  :anchor "bottom center")
+  (bar))
