@@ -92,7 +92,7 @@
   # Enable polkit agent
   security.soteria.enable = true;
 
-  # Disable documentation building
+  # Disable building documentation
   documentation.enable = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -186,44 +186,45 @@
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
     # Development
-    rustup
-    nixfmt-rfc-style
+    rustup # RUST Installer for rust
+    nixfmt-rfc-style # HASKELL Formatter for nix files
     gcc
     pkg-config
-    trunk
+    trunk # RUST To compile WASM apps
 
     # Misc
-    vscode
-    gnome-maps
-    gnome-text-editor
-    mission-center
-    blackbox-terminal
-    seahorse
-    mousam
+    vscode # CSS JS Code editor
+    gnome-maps # GTK4 JS Maps viewer
+    gnome-text-editor # GTK4 C Simple text editor
+    mission-center # GTK4 RUST System monitor
+    blackbox-terminal # GTK4 VALA Terminal emulator
+    seahorse # GTK4 C Gnome keyring manager
+    mousam # GTK4 PYTHON Pretty weather viewer
 
     # File Management
-    nautilus
-    ffmpegthumbnailer
-    diskonaut
-    baobab
-    snoop
+    nautilus # GTK4 C File manager
+    ffmpegthumbnailer # Enables video thumbnails
+    gnome-disk-utility # GTK4 C Disk management utility
+    diskonaut # TRM RUST Disk usage analyzer in terminal
+    baobab # GTK4 VALA Disk usage analyzer
+    snoop # GTK4 VALA File searching
 
     # Browsing
-    inputs.zen-browser.packages."${system}".beta
-    vivaldi
-    tor-browser
+    inputs.zen-browser.packages."${system}".beta # CSS JS Web browser
+    vivaldi # CSS JS Web browser
+    tor-browser # CSS JS Web browser
 
     # Media
-    loupe
-    kdePackages.okular
-    parabolic
-    celluloid
+    loupe # GTK4 RUST Image viewer
+    kdePackages.okular # QT C++ Document viewer
+    parabolic # GTK4 C++ Video downloader
+    celluloid # GTK4 C Video player
 
     # Communication
-    equibop
+    equibop # TODO Remove this
 
-    openasar
-    equicord
+    openasar # Speeds up discord startup
+    equicord # Adds mods to discord
     discord.overrideAttrs (oldAttrs: rec {
       postInstall = ''
         # Apply OpenASAR
@@ -242,11 +243,11 @@
     teamspeak5_client
 
     # Gaming
-    prismlauncher
+    prismlauncher # Minecraft launcher
 
     # Creative
-    gimp
-    inkscape
+    gimp # Image editor
+    inkscape # Vector editor
   ];
   programs.steam.enable = true;
   programs.spicetify =
@@ -258,8 +259,7 @@
       enabledExtensions = with spicePkgs.extensions; [
         hidePodcasts
         shuffle
-        betterGenres
-        beautifulLyrics
+        # beautifulLyrics
         starRatings
         ({
             src = ./configs/spotify

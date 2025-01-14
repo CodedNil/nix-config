@@ -4,6 +4,10 @@ in the middle have date, time and music info/buttons
 on the right have the taskbar icons and power buttons
 perhaps try vertical bar
 osd for switching music tracks
+https://github.com/YaLTeR/niri/wiki/IPC
+https://github.com/saimoomedits/eww-widgets
+
+cleaner notification daemon styling https://github.com/Toqozz/wired-notify
 
 functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 named workspaces, discord on second etc
