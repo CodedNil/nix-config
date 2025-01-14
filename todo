@@ -1,12 +1,17 @@
 fix status bar https://github.com/elkowar/eww/
+on bar, have gnome like pills for workspace display maybe iwth icons
+in the middle have date, time and music info/buttons
+on the right have the taskbar icons and power buttons
+perhaps try vertical bar
+osd for switching music tracks
 
 functioning xwayland https://github.com/YaLTeR/niri/wiki/Xwayland
 named workspaces, discord on second etc
 super key alone for launcher
 
-osd for switching music tracks
-
 spotify extensions working, theme settings, star ratings settings etc
+https://spicetify.app/docs/development/api-wrapper/methods/local-storage/
+https://github.com/Gerg-L/spicetify-nix/issues/245
 
 default app configs https://wiki.nixos.org/wiki/Default_applications
 gtk4 desktop portal file picker

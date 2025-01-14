@@ -127,7 +127,7 @@
     # Equibop discord client
     xdg.configFile.equibop = {
       enable = true;
-      source = ./equibop;
+      source = ./configs/equibop;
       target = "equibop";
       force = true;
       recursive = true;
@@ -221,11 +221,24 @@
 
     # Communication
     equibop
-    # (discord.override {
-    #   withOpenASAR = true;
-    #   # withVencord = true;
-    #   withEquicord = true;
-    # })
+
+    openasar
+    equicord
+    discord.overrideAttrs (oldAttrs: rec {
+      postInstall = ''
+        # Apply OpenASAR
+        cp -f ${openasar} $out/opt/${oldAttrs.binaryName}/resources/app.asar
+
+        # Apply Equicord
+        mv $out/opt/${oldAttrs.binaryName}/resources/app.asar $out/opt/${oldAttrs.binaryName}/resources/_app.asar
+        mkdir $out/opt/${oldAttrs.binaryName}/resources/app.asar
+        
+        # Set up Equicord's patching script
+        echo '{"name":"discord","main":"index.js"}' > $out/opt/${oldAttrs.binaryName}/resources/app.asar/package.json
+        echo 'require("${equicord}/patcher.js")' > $out/opt/${oldAttrs.binaryName}/resources/app.asar/index.js
+      '';
+    })
+    
     teamspeak5_client
 
     # Gaming
@@ -248,6 +261,10 @@
         betterGenres
         beautifulLyrics
         starRatings
+        ({
+            src = ./configs/spotify
+            name = "overrides.js";
+        })
       ];
       theme = spicePkgs.themes.lucid;
     };

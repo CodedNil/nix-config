@@ -72,6 +72,7 @@
           {
             command = [
               "xwayland-satellite"
+              ":12"
             ];
           }
           {
@@ -84,7 +85,7 @@
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";
-          "DISPLAY" = ":2";
+          "DISPLAY" = ":12";
         };
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
@@ -287,7 +288,7 @@
       services.mako.enable = true;
       programs.eww = {
         enable = true;
-        configDir = ./eww;
+        configDir = ./configs/eww;
       };
       services.swayosd = {
         enable = true;
@@ -324,7 +325,7 @@
           ];
         };
 
-        extraCss = builtins.readFile ./anyrun.css;
+        extraCss = builtins.readFile ./configs/anyrun.css;
         extraConfigFiles."applications.ron".text = ''
           Config(
             desktop_actions: true,
