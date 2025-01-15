@@ -29,3 +29,34 @@ steam settings
 zen browser mods and settings # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily
 
 home assistant keybinds
+
+mouse gestures:
+https://github.com/jersou/mouse-actions/blob/main/examples/mouse-actions.json
+
+right mouse + line down to open new tab
+right mouse + line up to open anyrun
+right mouse + line to left and right to focus-column-left and right
+middle mouse + line to left and right to move-column-left and right
+middle mouse + line up and down to workspace up and down
+right mouse + draw c to close tab, reverse c to reopen
+hold right mouse and scroll to switch tabs
+
+maybe could do bindings with super modifier since thats on mouse?
+
+close window, move left and right window
+
+    # Bracket keys, comma and period to consume or expel windows
+    "Mod+BracketLeft".action = consume-or-expel-window-left;
+    "Mod+BracketRight".action = consume-or-expel-window-right;
+    "Mod+Comma".action = consume-window-into-column;
+    "Mod+Period".action = expel-window-from-column;
+
+    # R to switch window widths, shift to switch window heights, control to reset
+    "Mod+R".action = switch-preset-column-width;
+    "Mod+Shift+R".action = switch-preset-window-height;
+    "Mod+Ctrl+R".action = reset-window-height;
+
+    # F to maximize, shift F to fullscreen, C to center
+    "Mod+F".action = maximize-column;
+    "Mod+Shift+F".action = fullscreen-window;
+    "Mod+C".action = center-column;
