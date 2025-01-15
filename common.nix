@@ -41,6 +41,16 @@
     pulse.enable = true;
   };
 
+  # Enable greetd greeter
+  services.greetd.enable = true;
+  programs.regreet = {
+    enable = true;
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
+  }
+
   # Enable OpenGL
   hardware.graphics.enable = true;
 
@@ -91,6 +101,18 @@
 
   # Enable polkit agent
   security.soteria.enable = true;
+
+  # Use gnome xdg portal
+  xdg.portal.extraPortals = [
+    xdg-desktop-portal-gnome
+  ];
+  xdg.portal.config = {
+    common = {
+      default = [
+        "gnome"
+      ];
+    };
+  };
 
   # Disable building documentation
   documentation.enable = false;
@@ -178,6 +200,7 @@
     # Nautilus settings
     home.file."Templates/text.txt".text = "";
     dconf.settings = {
+      "/org/gnome/desktop/interface/color-scheme" = "prefer-dark";
       "org/gtk/gtk4/settings/file-chooser" = {
         "show-hidden" = true;
         "sort-directories-first" = true;

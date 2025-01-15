@@ -9,13 +9,33 @@
   services.xserver.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Enable the Cosmic Desktop Environment.
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
-  environment.cosmic.excludePackages = with pkgs; [
-    cosmic-store
-    cosmic-player
+  # Required packages
+  environment.systemPackages = with pkgs; [
+    bibata-cursors
+    xwayland-satellite
+    wlr-randr
   ];
+
+  # Enable the Cosmic Desktop Environment.
+  # services.displayManager.cosmic-greeter.enable = true;
+  # services.desktopManager.cosmic.enable = true;
+  # environment.cosmic.excludePackages = with pkgs; [
+  #   cosmic-store
+  #   cosmic-player
+  # ];
+
+  # Enable XWayland support
+  systemd.user.services.xwayland-satellite = {
+    enable = true;
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+    description = "XWayland Satellite Service";
+    serviceConfig = {
+        Type = "simple";
+        ExecStart = "xwayland-satellite :12";
+        Restart = "on-failure";
+    };
+  };
 
   # Niri
   programs.niri = {
@@ -69,12 +89,6 @@
           struts.bottom = 30;
         };
         spawn-at-startup = [
-          {
-            command = [
-              "xwayland-satellite"
-              ":12"
-            ];
-          }
           {
             command = [
               "sh"
@@ -356,10 +370,4 @@
         '';
       };
     };
-
-  environment.systemPackages = with pkgs; [
-    bibata-cursors
-    xwayland-satellite
-    wlr-randr
-  ];
 }
