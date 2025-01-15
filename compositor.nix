@@ -11,7 +11,6 @@
 
   # Required packages
   environment.systemPackages = with pkgs; [
-    bibata-cursors
     xwayland-satellite
     wlr-randr
   ];
@@ -377,5 +376,23 @@
           )
         '';
       };
+
+      # Theme GTK Apps
+      gtk = {
+        enable = trie;
+        cursorTheme = {
+          package = pkgs.bibata-cursors;
+          name = "Bibata-Modern-Ice";
+          size = 24;
+        };
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus";
+        }
+        theme = {
+          package = pkgs.whitesur-gtk-theme;
+          name = "WhiteSur";
+        }
+      }
     };
 }
