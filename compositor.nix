@@ -298,17 +298,25 @@
         };
       };
 
-      # System
-      services.mako.enable = true;
+      # Notification daemon
+      # services.mako.enable = true;
+      services.wired = {
+        enable = true;
+      };
+
+      # Widgets and bars
       programs.eww = {
         enable = true;
         configDir = ./configs/eww;
       };
+
+      # On screen display
       services.swayosd = {
         enable = true;
         display = "HDMI-A-1";
       };
 
+      # Application launcher
       imports = [ inputs.anyrun.homeManagerModules.default ];
       programs.anyrun = {
         enable = true;
