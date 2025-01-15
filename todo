@@ -10,7 +10,11 @@ https://github.com/saimoomedits/eww-widgets
 daily updater script that autoruns, compares query of packages before and after then adds changes to a file logging it like spotify 1.05 > 1.06
 then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
 
-cleaner notification daemon styling https://github.com/Toqozz/wired-notify
+<!-- cleaner notification daemon styling https://github.com/Toqozz/wired-notify
+gtk4 desktop portal file picker
+easyeffects for ts3
+use standard discord with equicord installed
+fix nautilus cursor -->
 
 named workspaces, discord on second etc
 super key alone for launcher
@@ -19,17 +23,9 @@ https://github.com/Gerg-L/spicetify-nix/issues/245
 Fix lucid theme settings https://github.com/sanoojes/Spicetify-Lucid/issues/91
 
 default app configs https://wiki.nixos.org/wiki/Default_applications
-gtk4 desktop portal file picker
-
-test easyeffects for ts3
-
-discord fix the startup animation https://nixos.wiki/wiki/Discord
-use standard discord with equicord installed
 
 steam settings
 
 zen browser mods and settings # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily
 
 home assistant keybinds
-
-fix nautilus cursor
