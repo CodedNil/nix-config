@@ -258,8 +258,6 @@
     # Development
     rustup # RUST Installer for rust
     nixfmt-rfc-style # HASKELL Formatter for nix files
-    gcc
-    pkg-config
     trunk # RUST To compile WASM apps
     jq # C Command line JSON processor
 

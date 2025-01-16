@@ -13,7 +13,7 @@
 
   home-manager.users.dan = {
     xdg.configFile."mouse-actions.json".text = builtins.toJSON {
-      shape_button = "Right";
+      shape_button = "Middle";
       bindings =
         let
           # Function to generate a list of coordinate pairs based on x and y
