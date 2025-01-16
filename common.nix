@@ -137,6 +137,9 @@
   documentation.enable = false;
   documentation.man.generateCaches = false;
 
+  # Enable ydotool for keyboard input
+  programs.ydotool.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
     isNormalUser = true;
@@ -144,6 +147,7 @@
       "networkmanager"
       "wheel"
       "input"
+      "ydotool"
     ];
     shell = pkgs.fish;
   };
