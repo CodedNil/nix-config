@@ -13,28 +13,8 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     wlr-randr
+    bibata-cursors
   ];
-
-  # Enable the Cosmic Desktop Environment.
-  # services.displayManager.cosmic-greeter.enable = true;
-  # services.desktopManager.cosmic.enable = true;
-  # environment.cosmic.excludePackages = with pkgs; [
-  #   cosmic-store
-  #   cosmic-player
-  # ];
-
-  # Enable XWayland support
-  systemd.user.services.xwayland-satellite = {
-    enable = true;
-    after = [ "network.target" ];
-    wantedBy = [ "default.target" ];
-    description = "XWayland Satellite Service";
-    serviceConfig = {
-        Type = "simple";
-        ExecStart = "xwayland-satellite :12";
-        Restart = "on-failure";
-    };
-  };
 
   # Niri
   programs.niri = {
@@ -85,16 +65,22 @@
             inactive.color = "#505050";
           };
 
-          struts.bottom = 30;
+          # struts.bottom = 30;
         };
         spawn-at-startup = [
           {
             command = [
-              "sh"
-              "-c"
-              "~/.config/eww/launch_bar"
+              "xwayland-satellite"
+              ":12"
             ];
           }
+          #   {
+          #     command = [
+          #       "sh"
+          #       "-c"
+          #       "~/.config/eww/launch_bar"
+          #     ];
+          #   }
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";
@@ -102,7 +88,7 @@
         };
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
-        input.focus-follows-mouse.enable = true;
+        # input.focus-follows-mouse.enable = true;
         cursor = {
           theme = "Bibata-Modern-Ice";
           size = 24;
@@ -379,20 +365,19 @@
 
       # Theme GTK Apps
       gtk = {
-        enable = trie;
+        enable = true;
         cursorTheme = {
           package = pkgs.bibata-cursors;
           name = "Bibata-Modern-Ice";
           size = 24;
         };
         iconTheme = {
-          package = pkgs.papirus-icon-theme;
-          name = "Papirus";
-        }
+          package = pkgs.adwaita-icon-theme;
+          name = "Adwaita";
+        };
         theme = {
-          package = pkgs.whitesur-gtk-theme;
-          name = "WhiteSur";
-        }
-      }
+          name = "Adwaita";
+        };
+      };
     };
 }

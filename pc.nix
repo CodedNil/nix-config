@@ -84,8 +84,8 @@
           }
         ];
         open-on-output = "HDMI-A-2";
-        open-maximized = false;
-        open-fullscreen = true;
+        open-maximized = true;
+        open-fullscreen = false;
         open-floating = false;
         open-focused = false;
       }

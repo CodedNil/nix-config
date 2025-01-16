@@ -11,12 +11,10 @@ daily updater script that autoruns, compares query of packages before and after 
 then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
 
 <!-- cleaner notification daemon styling https://github.com/Toqozz/wired-notify
-gtk4 desktop portal file picker
-easyeffects for ts3
-use standard discord with equicord installed
-fix nautilus cursor -->
+fix so it doesnt have the separate mounts on the left bar
+gtk4 desktop portal file picker -->
 
-gnome themes, blurry gtk theme and perhaps per app theming https://github.com/intergrav/adwaita-themes
+greetd greeter instead of cosmic
 
 named workspaces, discord on second etc
 super key alone for launcher

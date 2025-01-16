@@ -1,4 +1,9 @@
 {
+  pkgs,
+  ...
+}:
+
+{
   programs.ydotool.enable = true;
   programs.mouse-actions = {
     enable = true;
@@ -11,47 +16,53 @@
   home-manager.users.dan = {
     xdg.configFile."mouse-actions.json".text = builtins.toJSON {
       shape_button = "Right";
-      bindings = let
-        halfCircleShape = flip:
-          let
-            stepSize = 100;
-            topY = 0;
-            bottomY = 1000;
-            path = concatMap (y: [
-              { x = -flip * round (y * 0.1); y = y; }
-              { x = -flip * round ((bottomY - y) * 0.1); y = bottomY - (y - topY); }
-            ]) (builtins.genList (n: topY + n * stepSize) ((bottomY - topY) / stepSize / 2));
-          in [{ x = 0; y = topY; }] ++ path;
-
-        straightLineShape = (dx, dy): [
-          for offset in [0, 100..1000]: { x = dx * offset; y = dy * offset; }
-        ];
-
-        createBinding = { comment, button, type, shape ? [], cmd }:
+      bindings =
+        let
+          # Function to generate a list of coordinate pairs based on x and y
+          # If x is 1 then it does 0..1000, if x is -1 it will be 1000..0, and same for y, 0 will be 0..0
+          straightLineShape =
+            { x, y }:
+            # Define the steps for x and y based on the provided input.
+            let
+              totalSteps = 11;
+              stepValue = 1000 / (totalSteps - 1);
+              # Function to calculate the value based on step direction.
+              generateSeq =
+                step:
+                if step == 0 then
+                  # If step is 0, all values are the same.
+                  builtins.genList (_: 0) totalSteps
+                else
+                  # Generate list from 0 -> 1000
+                  builtins.genList (i: i * stepValue) totalSteps;
+              # Create x and y lists based on the step directions.
+              xSeq = generateSeq x;
+              ySeq = generateSeq y;
+            in
+            # Create a flat list of coordinate pairs (like [x1, y1, x2, y2, ...]).
+            builtins.concatMap (i: [
+              (builtins.elemAt xSeq i)
+              (builtins.elemAt ySeq i)
+            ]) (builtins.genList (x: x) totalSteps);
+        in
+        [
+          # New tab
           {
-            comment = comment;
-            button = button;
-            event_type = type;
-            shapes_xy = shape;
-            cmd_str = cmd;
-          };
-        
-        gestures = [
-          { comment = "New tab"; button = "Right"; type = "Shape"; shape = straightLineShape (0, 1); cmd = "ydotool key ctrl+t"; }
-          { comment = "Close tab"; button = "Right"; type = "Shape"; shape = halfCircleShape 1; cmd = "ydotool key ctrl+w"; }
-          { comment = "Reopen tab"; button = "Right"; type = "Shape"; shape = halfCircleShape -1; cmd = "ydotool key shift+ctrl+t"; }
-          { comment = "Next tab"; button = "Right"; type = "Click"; cmd = "ydotool key ctrl+tab"; }
-          { comment = "Previous tab"; button = "Right"; type = "Click"; cmd = "ydotool key ctrl+shift+tab"; }
-          { comment = "Focus column right"; button = "Right"; type = "Shape"; shape = straightLineShape (1, 0); cmd = "niri msg focus-column-right"; }
-          { comment = "Focus column left"; button = "Right"; type = "Shape"; shape = straightLineShape (-1, 0); cmd = "niri msg focus-column-left"; }
-          { comment = "Move column left"; button = "Middle"; type = "Shape"; shape = straightLineShape (-1, 0); cmd = "niri msg move-column-left"; }
-          { comment = "Move column right"; button = "Middle"; type = "Shape"; shape = straightLineShape (1, 0); cmd = "niri msg move-column-right"; }
-          { comment = "Move column to workspace up"; button = "Middle"; type = "Shape"; shape = straightLineShape (0, -1); cmd = "niri msg move-column-to-workspace-up"; }
-          { comment = "Move column to workspace down"; button = "Middle"; type = "Shape"; shape = straightLineShape (0, 1); cmd = "niri msg move-column-to-workspace-down"; }
-          { comment = "Launch anyrun"; button = "Right"; type = "Shape"; shape = straightLineShape (0, -1); cmd = "anyrun"; }
+            comment = "New tab";
+            event = {
+              button = "Right";
+              modifiers = [ ];
+              event_type = "Shape";
+              shapes_xy = [
+                (straightLineShape {
+                  x = 0;
+                  y = 1;
+                })
+              ];
+            };
+            cmd_str = "ydotool key ctrl+t";
+          }
         ];
-
-      in map createBinding gestures;
     };
   };
 }

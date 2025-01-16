@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -41,15 +42,45 @@
     pulse.enable = true;
   };
 
-  # Enable greetd greeter
-  services.greetd.enable = true;
-  programs.regreet = {
-    enable = true;
-    cursorTheme = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-    };
-  }
+  # Enable greeter
+  services.displayManager.cosmic-greeter.enable = true;
+  # services.greetd.enable = true;
+  # programs.regreet = {
+  #   enable = true;
+  #   settings = {
+  #     background = {
+  #       path = "/home/dan/nix-config/configs/greeter.jpg";
+  #       fit = "Fill"; # Available values: "Fill", "Contain", "Cover", "ScaleDown"
+  #     };
+  #     GTK = {
+  #       application_prefer_dark_theme = true;
+  #       cursor_theme_name = lib.mkDefault "Bibata-Modern-Ice";
+  #       icon_theme_name = "Adwaita";
+  #       theme_name = "Adwaita";
+  #     };
+  #     commands = {
+  #       reboot = [
+  #         "systemctl"
+  #         "reboot"
+  #       ];
+  #       poweroff = [
+  #         "systemctl"
+  #         "poweroff"
+  #       ];
+  #     };
+  #     appearance = {
+  #       greeting_msg = "Welcome back!";
+  #     };
+  #     widget = {
+  #       clock = {
+  #         format = "%a %H:%M";
+  #         resolution = "500ms";
+  #         timezone = "Europe/London";
+  #         label_width = 150;
+  #       };
+  #     };
+  #   };
+  # };
 
   # Enable OpenGL
   hardware.graphics.enable = true;
@@ -102,18 +133,6 @@
   # Enable polkit agent
   security.soteria.enable = true;
 
-  # Use gnome xdg portal
-  xdg.portal.extraPortals = [
-    xdg-desktop-portal-gnome
-  ];
-  xdg.portal.config = {
-    common = {
-      default = [
-        "gnome"
-      ];
-    };
-  };
-
   # Disable building documentation
   documentation.enable = false;
   documentation.man.generateCaches = false;
@@ -124,9 +143,14 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "input"
     ];
     shell = pkgs.fish;
   };
+  users.groups.input = { };
+  services.udev.extraRules = ''
+    KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
+  '';
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
 
@@ -200,7 +224,9 @@
     # Nautilus settings
     home.file."Templates/text.txt".text = "";
     dconf.settings = {
-      "/org/gnome/desktop/interface/color-scheme" = "prefer-dark";
+      "org/gnome/desktop/interface" = {
+        "color-scheme" = "prefer-dark";
+      };
       "org/gtk/gtk4/settings/file-chooser" = {
         "show-hidden" = true;
         "sort-directories-first" = true;
@@ -249,6 +275,7 @@
     diskonaut # TRM RUST Disk usage analyzer in terminal
     baobab # GTK4 VALA Disk usage analyzer
     snoop # GTK4 VALA File searching
+    dconf-editor # GTK4 Vala Configuration editor
 
     # Browsing
     inputs.zen-browser.packages."${system}".beta # CSS JS Web browser
