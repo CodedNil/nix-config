@@ -13,6 +13,7 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     wlr-randr
+    playerctl
     bibata-cursors
   ];
 
@@ -36,9 +37,7 @@
           always-center-single-column = true;
           center-focused-column = "never";
 
-          # default-column-width = {
-          #   proportion = 0.8;
-          # };
+          default-column-width.proportion = 0.4;
           preset-column-widths = [
             { proportion = 0.35; }
             { proportion = 0.6; }
@@ -47,9 +46,7 @@
 
           focus-ring = {
             enable = true;
-            width = 4;
-            # active.color = "#7fc8ff";
-            inactive.color = "#505050";
+            width = 2;
             active.gradient = {
               from = "#aa7a83";
               to = "#7a96aa";
@@ -57,17 +54,24 @@
               in' = "oklch longer hue";
               relative-to = "workspace-view";
             };
+            inactive.color = "#505050";
           };
           border = {
-            enable = false;
-            width = 4;
-            active.color = "#ffc87f";
+            enable = true;
+            width = 2;
+            active.gradient = {
+              from = "#aa7a83";
+              to = "#7a96aa";
+              angle = 45;
+              in' = "oklch longer hue";
+              relative-to = "workspace-view";
+            };
             inactive.color = "#505050";
           };
 
           struts = {
-            left = 60;
-            right = 60;
+            left = 40;
+            right = 40;
             # bottom = 30;
           };
         };
@@ -78,15 +82,12 @@
               ":12"
             ];
           }
-          #   {
-          #     command = [
-          #       "sh"
-          #       "-c"
-          #       "~/.config/eww/launch_bar"
-          #     ];
-          #   }
           # {
-          #   command = [ "mouse-actions" ];
+          #   command = [
+          #     "sh"
+          #     "-c"
+          #     "~/.config/eww/launch_bar"
+          #   ];
           # }
         ];
         environment = {
@@ -147,6 +148,9 @@
           "Mod+Shift+Right".action = move-column-right;
           "Mod+Shift+Down".action = move-window-down;
           "Mod+Shift+Up".action = move-window-up;
+
+          "Mod+Ctrl+Down".action = focus-workspace-down;
+          "Mod+Ctrl+Up".action = focus-workspace-up;
 
           # Scroll to move focus and columns, shift to move window with it
           "Mod+WheelScrollDown".action = focus-column-right;
@@ -308,7 +312,7 @@
         extraCss = builtins.readFile ./configs/anyrun.css;
         extraConfigFiles."applications.ron".text = ''
           Config(
-            desktop_actions: true,
+            desktop_actions: false,
             max_entries: 5,
             terminal: None,
           )

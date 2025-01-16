@@ -76,6 +76,14 @@
         background-color = "#000000";
       };
     };
+
+    # Workspaces
+    programs.niri.settings.workspaces."primary".open-on-output = "HDMI-A-1";
+    programs.niri.settings.workspaces."secondary".open-on-output = "HDMI-A-1";
+    programs.niri.settings.workspaces."spotify".open-on-output = "HDMI-A-2";
+    programs.niri.settings.workspaces."chat".open-on-output = "HDMI-A-2";
+
+    # Window rules
     programs.niri.settings.window-rules = [
       {
         matches = [
@@ -83,13 +91,35 @@
             app-id = "spotify";
           }
         ];
-        open-on-output = "HDMI-A-2";
+        open-on-workspace = "spotify";
         open-maximized = true;
-        open-fullscreen = false;
+        open-fullscreen = true;
         open-floating = false;
         open-focused = false;
       }
+      {
+        matches = [
+          {
+            app-id = "discord";
+          }
+        ];
+        default-column-width.proportion = 0.75;
+        open-on-workspace = "chat";
+        open-focused = true;
+      }
+      {
+        matches = [
+          {
+            app-id = "TeamSpeak";
+          }
+        ];
+        default-column-width.proportion = 0.25;
+        open-on-workspace = "chat";
+        open-focused = true;
+      }
     ];
+
+    # Spawn programs
     programs.niri.settings.spawn-at-startup = [
       {
         command = [

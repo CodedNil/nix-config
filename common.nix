@@ -137,24 +137,15 @@
   documentation.enable = false;
   documentation.man.generateCaches = false;
 
-  # Enable ydotool for keyboard input
-  programs.ydotool.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
     isNormalUser = true;
     extraGroups = [
       "networkmanager"
       "wheel"
-      "input"
-      "ydotool"
     ];
     shell = pkgs.fish;
   };
-  users.groups.input = { };
-  services.udev.extraRules = ''
-    KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
-  '';
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
 

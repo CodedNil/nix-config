@@ -63,7 +63,6 @@
                 ./common.nix
                 ./compositor.nix
                 ./shell.nix
-                # ./configs/mouse-actions.nix
                 specificModule
               ];
             };
