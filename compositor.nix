@@ -65,7 +65,11 @@
             inactive.color = "#505050";
           };
 
-          # struts.bottom = 30;
+          struts = {
+            left = 60;
+            right = 60;
+            # bottom = 30;
+          };
         };
         spawn-at-startup = [
           {
@@ -81,9 +85,9 @@
           #       "~/.config/eww/launch_bar"
           #     ];
           #   }
-          {
-            command = [ "mouse-actions" ];
-          }
+          # {
+          #   command = [ "mouse-actions" ];
+          # }
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";
@@ -91,7 +95,7 @@
         };
         prefer-no-csd = true;
         hotkey-overlay.skip-at-startup = true;
-        # input.focus-follows-mouse.enable = true;
+        input.focus-follows-mouse.enable = true;
         cursor = {
           theme = "Bibata-Modern-Ice";
           size = 24;
@@ -135,33 +139,14 @@
 
           # Arrow keys to move focus, shift to move window with it
           "Mod+Left".action = focus-column-left;
+          "Mod+Right".action = focus-column-right;
           "Mod+Down".action = focus-window-down;
           "Mod+Up".action = focus-window-up;
-          "Mod+Right".action = focus-column-right;
 
           "Mod+Shift+Left".action = move-column-left;
+          "Mod+Shift+Right".action = move-column-right;
           "Mod+Shift+Down".action = move-window-down;
           "Mod+Shift+Up".action = move-window-up;
-          "Mod+Shift+Right".action = move-column-right;
-
-          # Arrow keys with control to move focus between monitors, shift to move window with it
-          "Mod+Ctrl+Left".action = focus-monitor-left;
-          "Mod+Ctrl+Down".action = focus-monitor-down;
-          "Mod+Ctrl+Up".action = focus-monitor-up;
-          "Mod+Ctrl+Right".action = focus-monitor-right;
-
-          "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
-          "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
-          "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
-          "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
-
-          # Page keys to move focus and columns
-          "Mod+Page_Down".action = focus-workspace-down;
-          "Mod+Page_Up".action = focus-workspace-up;
-          "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
-          "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-          "Mod+Shift+Page_Down".action = move-workspace-down;
-          "Mod+Shift+Page_Up".action = move-workspace-up;
 
           # Scroll to move focus and columns, shift to move window with it
           "Mod+WheelScrollDown".action = focus-column-right;
@@ -180,30 +165,18 @@
           "Mod+Shift+Ctrl+WheelScrollUp".cooldown-ms = 150;
 
           # Left and right scroll to move focus and columns, shift to move window with it
-          "Mod+WheelScrollRight".action = focus-column-right;
-          "Mod+WheelScrollLeft".action = focus-column-left;
-          "Mod+Ctrl+WheelScrollRight".action = move-column-right;
-          "Mod+Ctrl+WheelScrollLeft".action = move-column-left;
+          "Mod+WheelScrollRight".action = move-column-right;
+          "Mod+WheelScrollLeft".action = move-column-left;
 
           # Numbers to switch workspaces, shift to move window to workspace
           "Mod+1".action = focus-workspace 1;
           "Mod+2".action = focus-workspace 2;
           "Mod+3".action = focus-workspace 3;
           "Mod+4".action = focus-workspace 4;
-          "Mod+5".action = focus-workspace 5;
-          "Mod+6".action = focus-workspace 6;
-          "Mod+7".action = focus-workspace 7;
-          "Mod+8".action = focus-workspace 8;
-          "Mod+9".action = focus-workspace 9;
           "Mod+Shift+1".action = move-column-to-workspace 1;
           "Mod+Shift+2".action = move-column-to-workspace 2;
           "Mod+Shift+3".action = move-column-to-workspace 3;
           "Mod+Shift+4".action = move-column-to-workspace 4;
-          "Mod+Shift+5".action = move-column-to-workspace 5;
-          "Mod+Shift+6".action = move-column-to-workspace 6;
-          "Mod+Shift+7".action = move-column-to-workspace 7;
-          "Mod+Shift+8".action = move-column-to-workspace 8;
-          "Mod+Shift+9".action = move-column-to-workspace 9;
 
           # Bracket keys, comma and period to consume or expel windows
           "Mod+BracketLeft".action = consume-or-expel-window-left;
@@ -287,10 +260,7 @@
       };
 
       # Notification daemon
-      # services.mako.enable = true;
-      services.wired = {
-        enable = true;
-      };
+      services.mako.enable = true;
 
       # Widgets and bars
       programs.eww = {

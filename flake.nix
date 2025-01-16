@@ -11,7 +11,6 @@
     niri.url = "github:sodiboo/niri-flake";
 
     anyrun.url = "github:anyrun-org/anyrun";
-    wired.url = "github:Toqozz/wired-notify";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixcord.url = "github:kaylorben/nixcord";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
@@ -25,7 +24,6 @@
       nixos-cosmic,
       niri,
       anyrun,
-      wired,
       spicetify-nix,
       nixcord,
       zen-browser,
@@ -46,7 +44,6 @@
                   home-manager.useUserPackages = true;
 
                   home-manager.sharedModules = [
-                    wired.homeManagerModules.default
                     nixcord.homeManagerModules.nixcord
                     spicetify-nix.homeManagerModules.default
                   ];
@@ -66,7 +63,7 @@
                 ./common.nix
                 ./compositor.nix
                 ./shell.nix
-                ./configs/mouse-actions.nix
+                # ./configs/mouse-actions.nix
                 specificModule
               ];
             };

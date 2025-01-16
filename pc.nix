@@ -126,9 +126,9 @@
       "file:///home/dan/Downloads Downloads"
       "file:///home/dan/Documents Documents"
       "file:///mnt/vault vault"
-      "file:///mnt/raspi raspi"
-      "file:///mnt/ratat ratat"
-      "file:///mnt/ratatdan ratatdan"
+      # "file:///mnt/raspi raspi"
+      # "file:///mnt/ratat ratat"
+      # "file:///mnt/ratatdan ratatdan"
     ];
   };
 }

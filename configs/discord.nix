@@ -106,6 +106,7 @@
         };
       };
       config = {
+        disableMinSize = true;
         plugins = {
           alwaysTrust.enable = true;
           clearURLs.enable = true;

@@ -10,10 +10,6 @@ https://github.com/saimoomedits/eww-widgets
 daily updater script that autoruns, compares query of packages before and after then adds changes to a file logging it like spotify 1.05 > 1.06
 then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
 
-<!-- cleaner notification daemon styling https://github.com/Toqozz/wired-notify
-fix so it doesnt have the separate mounts on the left bar
-gtk4 desktop portal file picker -->
-
 greetd greeter instead of cosmic
 
 named workspaces, discord on second etc
