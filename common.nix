@@ -137,6 +137,11 @@
   documentation.enable = false;
   documentation.man.generateCaches = false;
 
+  # Disable some default packages
+  services.xserver.excludePackages = [
+    pkgs.xterm
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dan = {
     isNormalUser = true;
@@ -234,6 +239,9 @@
       };
       "org/gnome/nautilus/preferences" = {
         "default-folder-viewer" = "icon-view";
+      };
+      "org/gnome/TextEditor" = {
+        "restore-session" = false;
       };
     };
 

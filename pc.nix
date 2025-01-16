@@ -117,6 +117,24 @@
         open-on-workspace = "chat";
         open-focused = true;
       }
+      {
+        matches = [
+          {
+            app-id = "code";
+          }
+        ];
+        default-column-width.proportion = 0.5;
+        open-focused = true;
+      }
+      {
+        matches = [
+          {
+            app-id = "vivaldi";
+          }
+        ];
+        default-column-width.proportion = 0.6;
+        open-focused = true;
+      }
     ];
 
     # Spawn programs
