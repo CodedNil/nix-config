@@ -1,16 +1,14 @@
 {
   pkgs,
+  lib,
   ...
 }:
 
 {
   programs.ydotool.enable = true;
-  programs.mouse-actions = {
-    enable = true;
-    autorun = true;
-  };
-  environment.systemPackages = [
-    pkgs.mouse-actions-gui
+  environment.systemPackages = with pkgs; [
+    mouse-actions
+    mouse-actions-gui
   ];
 
   home-manager.users.dan = {
@@ -135,7 +133,7 @@
                 (straightLineShape 0 1)
               ];
             };
-            cmd_str = "ydotool key ctrl+t";
+            cmd_str = "ydotool key 29:1 20:1 20:0 29:0";
           }
           {
             comment = "Launch anyrun, right mouse + line up";
@@ -154,7 +152,7 @@
               button = "Right";
               event_type = "Click";
             };
-            cmd_str = "ydotool key ctrl+tab";
+            cmd_str = "ydotool key 29:1 15:1 15:0 29:0";
           }
           {
             comment = "Previous tab, right mouse + scroll";
@@ -162,7 +160,7 @@
               button = "Right";
               event_type = "Click";
             };
-            cmd_str = "ydotool key ctrl+shift+tab";
+            cmd_str = "ydotool key 29:1 42:1 15:1 15:0 42:0 29:0";
           }
           {
             comment = "Close tab, right mouse + draw c";
@@ -173,7 +171,7 @@
                 (arcShape (-0.25) (-0.5))
               ];
             };
-            cmd_str = "ydotool key ctrl+w";
+            cmd_str = "ydotool key 29:1 17:1 17:0 29:0";
           }
           {
             comment = "Reopen tab, right mouse + draw reverse c";
@@ -184,7 +182,7 @@
                 (arcShape 0.25 0.5)
               ];
             };
-            cmd_str = "ydotool key shift+ctrl+t";
+            cmd_str = "ydotool key 29:1 42:1 20:1 20:0 42:0 29:0";
           }
           {
             comment = "Focus column left, right mouse + line left";
@@ -195,7 +193,7 @@
                 (straightLineShape (-1) 0)
               ];
             };
-            cmd_str = "niri msg focus-column-left";
+            cmd_str = "niri msg action focus-column-left";
           }
           {
             comment = "Focus column right, right mouse + line right";
@@ -206,7 +204,7 @@
                 (straightLineShape 1 0)
               ];
             };
-            cmd_str = "niri msg focus-column-right";
+            cmd_str = "niri msg action focus-column-right";
           }
           {
             comment = "Move column left, middle mouse + line left";
@@ -217,7 +215,7 @@
                 (straightLineShape (-1) 0)
               ];
             };
-            cmd_str = "niri msg move-column-left";
+            cmd_str = "niri msg action move-column-left";
           }
           {
             comment = "Move column right, middle mouse + line right";
@@ -228,7 +226,7 @@
                 (straightLineShape 1 0)
               ];
             };
-            cmd_str = "niri msg move-column-right";
+            cmd_str = "niri msg action move-column-right";
           }
           {
             comment = "Move column to workspace up, middle mouse + line up";
@@ -239,7 +237,7 @@
                 (straightLineShape 0 (-1))
               ];
             };
-            cmd_str = "niri msg move-column-to-workspace-up";
+            cmd_str = "niri msg action move-column-to-workspace-up";
           }
           {
             comment = "Move column to workspace down, middle mouse + line down";
@@ -250,7 +248,7 @@
                 (straightLineShape 0 1)
               ];
             };
-            cmd_str = "niri msg move-column-to-workspace-down";
+            cmd_str = "niri msg action move-column-to-workspace-down";
           }
         ];
     };

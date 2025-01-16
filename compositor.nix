@@ -81,6 +81,9 @@
           #       "~/.config/eww/launch_bar"
           #     ];
           #   }
+          {
+            command = [ "mouse-actions" ];
+          }
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";
