@@ -1,6 +1,3 @@
-daily updater script that autoruns, compares query of packages before and after then adds changes to a file logging it like spotify 1.05 > 1.06
-then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
-
 greetd greeter instead of cosmic
 
 super key alone for launcher, or a faster way to launch it
