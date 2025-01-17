@@ -1,66 +1,151 @@
+(defvar eww "$HOME/Downloads/eww/target/release/eww -c $HOME/.config/eww")
+(defvar primary_width 50)
 
 (defwidget bar []
-  (centerbox :orientation "h"
-    (workspaces)
-    (music)
-    (sidestuff)))
+  (box :orientation "v"
+    (box :orientation "v"
+      :class "segment"
+      :valign "center"
+      :space-evenly false
+      :spacing "10"
+      (systray :orientation "v" :icon-size 15 :spacing 10)
+      (time)
+      (music)
+      (volume)
+      (date)
+      (power))))
 
-(defwidget sidestuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (metric :label "🔊"
-      :value volume
-    :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}%")
-  time))
 
-(defwidget workspaces []
-  (box :class "workspaces"
-    :orientation "h"
-    :space-evenly true
-    :halign "start"
-    :spacing 10
-    (button :onclick "niri msg action focus-workspace 1" 1)
-    (button :onclick "niri msg action focus-workspace 2" 2)
-    (button :onclick "niri msg action focus-workspace 3" 3)
-    (button :onclick "niri msg action focus-workspace 4" 4)
-    (button :onclick "niri msg action focus-workspace 5" 5)))
+(defwidget time []
+  (box :orientation "v"
+    :class "time"
+    (label :class "hour" :text hour)
+    (label :class "min" :text min)
+    (label :class "sec" :text sec)))
+(defpoll hour :interval "1s" "date +%H")
+(defpoll min  :interval "1s" "date +%M")
+(defpoll sec  :interval "1s" "date +%S")
+
+
+(defwidget date []
+  (box :orientation "v"
+    :halign "center"
+    :class "date"
+    (label :class "day-word" :text day_word)
+    (label :class "day" :text day)
+    (label :class "month" :text month)))
+(defpoll day_word :interval "10m" "date +%a | tr [:lower:] [:upper:]")
+(defpoll day      :interval "10m" "date +%d")
+(defpoll month    :interval "1h"  "date +%b | tr [:lower:] [:upper:]")
+
+
+(defwidget volume []
+  (scale :class "volume-scale"
+    :orientation "v"
+    :min 0
+    :max 101
+    :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ $(echo \"scale=2; {}/100\" | bc)"
+    :height 100
+    :flipped true
+    :value volume
+    :valign "fill"
+  ))
+(defpoll volume :interval "0.5s" "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}' || true")
+
 
 (defwidget music []
   (box :class "music"
-    :orientation "h"
+    :orientation "v"
     :space-evenly false
-    :halign "center"
-  {music != "" ? "🎵${music}" : ""}))
+    :spacing "10"
+    :valign "center"
+    (eventbox :class "music-art"
+      :width primary_width
+      :height primary_width
+      :style "background-image: url('${music_cover}');"
+      :onscroll "if [ '{}' == 'up' ]; then playerctl next; else playerctl previous; fi"
+      :onclick "playerctl play-pause"
+    )
+    (scale :class "music-progress"
+      :orientation "h"
+      :min 0
+      :max music_length
+      :onchange "playerctl position {}"
+      :width primary_width
+      :height 10
+      :value music_position
+    )
+    (label :class "music_title"
+      :text music_title
+      :wrap true
+      :justify "center"
+    )
+    (label :class "music_artist"
+      :text music_artist
+      :wrap true
+      :justify "center"
+    )
+  ))
+(deflisten music_cover "playerctl --follow metadata --format '{{ mpris:artUrl }}' || true")
+(deflisten music_artist "playerctl --follow metadata --format '{{ artist }}' || true")
+(deflisten music_title "playerctl --follow metadata --format '{{ title }}' || true")
+(defpoll music_position :interval "1s" "./music_info --position || true")
+(defpoll music_length :interval "1s" "./music_info --length || true")
 
 
-(defwidget metric [label value onchange]
-  (box :orientation "h"
-    :class "metric"
-    :space-evenly false
-    (box :class "label" label)
-    (scale :min 0
-      :max 101
-      :active {onchange != ""}
-      :value value
-    :onchange onchange)))
+(defwidget power []
+  (eventbox
+    :onhover "${eww} update power=true"
+    :onhoverlost "${eww} update power=false"
+    (box
+      :orientation "v"
+      :space-evenly "false"
+      :vexpand "false"
+      (revealer	:transition "slideup"
+        :reveal power
+        :duration "550ms"
+        (box
+          :orientation "v"
+          :space-evenly "false"
+          
+          (button
+            :class "power-button"
+            :tooltip "Logout"
+            :onclick "niri msg quit"
+            (image :path "./icons/lock.svg"))
+          
+          (button
+            :class "power-button"
+            :tooltip "Reboot"
+            :onclick "reboot"
+            (image :path "./icons/reboot.svg"))
+        ))
+      
+      (button
+        :class "power-button"
+        :tooltip "Shutdown"
+        :onclick "shutdown now"
+        (image :path "./icons/shutdown.svg")))))
+(defvar power false)
 
 
+(defwidget niri-scroller []
+  (eventbox :onscroll "if [ '{}' == 'down' ]; then niri msg action focus-column-right; else niri msg action focus-column-left; fi"
+    :vexpand true
+    :valign "fill"
+  :style "background-color: #8ec07c; border-radius: 10px;"))
 
-(deflisten music :initial ""
-"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
-(defpoll volume :interval "1s"
-"scripts/getvol")
-
-(defpoll time :interval "10s"
-"date '+%H:%M - %A %d %B'")
+(defwindow niri_scroller
+  :monitor "LG TV SSCR2"
+  :stacking "fg"
+  :geometry (geometry :x 0 :y 0 :width "800px" :height "5px" :anchor "bottom center")
+  :reserve (struts :distance "10px" :side "bottom")
+  :exclusive false
+  (niri-scroller))
 
 (defwindow bar
   :monitor "LG TV SSCR2"
   :stacking "fg"
-  :windowtype "dock"
-  :geometry (geometry :x "0%"
-    :y "0%"
-    :width "100%"
-    :height "10px"
-  :anchor "bottom center")
+  :geometry (geometry :x 10 :y 10 :width "50px" :height "100%" :anchor "right center")
   (bar))

@@ -1,42 +1,101 @@
-* {
-  all: unset; // Unsets everything so you can style everything from scratch
+$background: #282828;
+$foreground: #a89984;
+
+window {
+  background: transparent;
+
+  color: $foreground;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-// Global Styles
-.bar {
-  background-color: #3a3a3a;
-  color: #b0b4bc;
-  padding: 10px;
-}
-
-// Styles on classes (see eww.yuck for more information)
-
-.sidestuff slider {
-  all: unset;
-  color: #ffd5cd;
-}
-
-.metric scale trough highlight {
-  all: unset;
-  background-color: #D35D6E;
-  color: #000000;
+.segment {
+  background: $background;
   border-radius: 10px;
+  padding: 5px;
 }
 
-.metric scale trough {
-  all: unset;
-  background-color: #4e4e4e;
-  border-radius: 50px;
-  min-height: 3px;
-  min-width: 50px;
-  margin-left: 10px;
-  margin-right: 20px;
+// Time and date
+.time {
+  font-size: 24px;
+  color: $foreground;
+}
+.sec {
+  font-size: 14px;
 }
 
-.label-ram {
-  font-size: large;
+.date {
+  color: $foreground;
+  font-size: 14px;
+}
+.day {
+  font-size: 20px;
 }
 
-.workspaces button:hover {
-  color: #D35D6E;
+// Music
+.music-art {
+	background-size: cover;
+	border-radius: 100px;
+  border: 1px solid #665c54;
+}
+
+.music_title {
+  font-size: 12px;
+}
+
+.music_artist {
+  font-size: 10px;
+}
+
+.music-progress {
+  padding: 0px;
+  slider {
+    all: unset;
+  }
+  trough {
+    background-color: #1d2021;
+    min-height: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #232628;
+    }
+  }
+  highlight {
+    background-color: #665c54;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #8c7e74;
+    }
+  }
+}
+
+.volume-scale {
+  padding: 0px;
+  slider {
+    all: unset;
+  }
+  trough {
+    background-color: #1d2021;
+    min-width: 50px;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #232628;
+    }
+  }
+  highlight {
+    background-color: #665c54;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: #8c7e74;
+    }
+  }
+}
+
+// Power menu
+.power-button {
+  background: transparent;
 }

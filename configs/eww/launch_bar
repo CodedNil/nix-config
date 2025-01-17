@@ -13,3 +13,4 @@ fi
 ${EWW_CMD} close-all
 # pkill -x eww
 ${EWW_CMD} open bar
+${EWW_CMD} open niri_scroller
