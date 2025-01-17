@@ -78,10 +78,13 @@
     };
 
     # Workspaces
-    programs.niri.settings.workspaces."primary".open-on-output = "HDMI-A-1";
-    programs.niri.settings.workspaces."secondary".open-on-output = "HDMI-A-1";
-    programs.niri.settings.workspaces."spotify".open-on-output = "HDMI-A-2";
-    programs.niri.settings.workspaces."chat".open-on-output = "HDMI-A-2";
+    programs.niri.settings.workspaces = {
+      a_primary.open-on-output = "HDMI-A-1";
+      b_secondary.open-on-output = "HDMI-A-1";
+
+      a_spotify.open-on-output = "HDMI-A-2";
+      b_chat.open-on-output = "HDMI-A-2";
+    };
 
     # Window rules
     programs.niri.settings.window-rules = [
@@ -91,9 +94,9 @@
             app-id = "spotify";
           }
         ];
-        open-on-workspace = "spotify";
+        open-on-workspace = "a_spotify";
         open-maximized = true;
-        open-fullscreen = true;
+        open-fullscreen = false;
         open-floating = false;
         open-focused = false;
       }
@@ -104,7 +107,7 @@
           }
         ];
         default-column-width.proportion = 0.75;
-        open-on-workspace = "chat";
+        open-on-workspace = "b_chat";
         open-focused = true;
       }
       {
@@ -114,7 +117,7 @@
           }
         ];
         default-column-width.proportion = 0.25;
-        open-on-workspace = "chat";
+        open-on-workspace = "b_chat";
         open-focused = true;
       }
       {

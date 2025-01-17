@@ -72,7 +72,6 @@
           struts = {
             left = 40;
             right = 40;
-            # bottom = 30;
           };
         };
         spawn-at-startup = [
@@ -82,13 +81,13 @@
               ":12"
             ];
           }
-          # {
-          #   command = [
-          #     "sh"
-          #     "-c"
-          #     "~/.config/eww/launch_bar"
-          #   ];
-          # }
+          {
+            command = [
+              "sh"
+              "-c"
+              "~/.config/eww/launch_eww"
+            ];
+          }
         ];
         environment = {
           "QT_QPA_PLATFORM" = "wayland";

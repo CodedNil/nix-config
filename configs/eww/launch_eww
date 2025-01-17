@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+
+# Define the command for eww
+EWW_CMD="eww -c $HOME/.config/eww"
+
+# Start the Eww daemon if it's not running
+if ! pgrep -x "eww" > /dev/null; then
+    ${EWW_CMD} daemon
+    sleep 1
+fi
+
+# Refresh widgets by closing all and reopening them
+${EWW_CMD} close-all
+${EWW_CMD} open bar
+${EWW_CMD} open niri_scroller
+
+
+# Variables
+COVER="/tmp/eww_music_cover.png"
+CURRENT_COVER_URL=""
+
+# Function to update eww
+update_eww_music() {
+    POSITION=$1
+    LENGTH=$2
+    COVER_URL=$3
+
+    # Update position and length
+    eww update music_position="$(awk '{ printf("%.6f\n", $1 / 1000000) }' <<< "$POSITION")"
+    eww update music_length="$(awk '{ printf("%.6f\n", $1 / 1000000) }' <<< "$LENGTH")"
+
+    # Update cover only if it has changed
+    if [[ "$COVER_URL" != "$CURRENT_COVER_URL" ]]; then
+        CURRENT_COVER_URL="$COVER_URL"
+        
+        if [[ -n "$CURRENT_COVER_URL" ]]; then
+            curl -s -L -o "$COVER" "$CURRENT_COVER_URL"
+            if [[ -f "$COVER" ]]; then
+                eww update music_cover="$COVER"
+            else
+                eww update music_cover="images/music.png"
+            fi
+        else
+            eww update music_cover="images/music.png"
+        fi
+    fi
+}
+
+# Function to update eww with volume
+update_eww_volume() {
+    VOLUME=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)}')
+    eww update volume="$VOLUME"
+}
+
+# Function to update eww with workspaces data
+update_workspaces() {
+    # Get the current workspace data
+    workspace_data=$(niri msg --json workspaces)
+    
+    # Parse JSON and categorize workspaces by output
+    eww update workspaces_1="$(echo "$workspace_data" | jq '[.[] | select(.output == "HDMI-A-1") | {id: .id, idx: .idx, name: .name, focused: .is_focused, active: .is_active, occupied: (.active_window_id != null)}] | sort_by(.id)')"
+    eww update workspaces_2="$(echo "$workspace_data" | jq '[.[] | select(.output == "HDMI-A-2") | {id: .id, idx: .idx, name: .name, focused: .is_focused, active: .is_active, occupied: (.active_window_id != null)}] | sort_by(.id)')"
+}
+
+# Start with an initial volume update then start a background loop to periodically update the volume
+# Also update workspaces data here
+(
+    while true; do
+        update_eww_volume
+        update_workspaces
+        sleep 0.5
+    done
+) &
+BACKGROUND_PID=$!
+
+# Define a function to clean up background processes
+cleanup() {
+    # Kill all background jobs
+    kill $(jobs -p)
+    exit 0
+}
+trap cleanup SIGINT
+
+# Listen to metadata using playerctl --follow
+playerctl --follow metadata --format '{{position}}|{{mpris:length}}|{{mpris:artUrl}}' | while IFS='|' read -r POSITION LENGTH COVER_URL
+do
+    update_eww_music "$POSITION" "$LENGTH" "$COVER_URL"
+done
+
+# Wait for all background jobs to complete
+wait $BACKGROUND_PID

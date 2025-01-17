@@ -7,13 +7,37 @@
       :class "segment"
       :valign "center"
       :space-evenly false
-      :spacing "10"
-      (systray :orientation "v" :icon-size 15 :spacing 10)
+      :spacing "30"
+      (systray :orientation "v" :icon-size 20 :spacing 10)
+      (workspaces)
       (time)
       (music)
-      (volume)
       (date)
       (power))))
+
+
+(defwidget workspaces []
+  (box
+    :orientation "h"
+    :spacing 5
+    :halign "center"
+    (box
+      :orientation "v"
+      :spacing 0
+      (for wsp in {workspaces_1}
+        (button :class "workspace-button ${wsp.focused ? "focused" : "unfocused"} ${wsp.active ? "active" : "inactive"} ${wsp.occupied ? "occupied" : "empty"}"
+          :onclick "niri msg action focus-workspace ${wsp.name}"
+        {wsp.occupied ? "◆" : "◇"})))
+    (box
+      :orientation "v"
+      :spacing 0
+      (for wsp in {workspaces_2}
+        (button :class "workspace-button ${wsp.focused ? "focused" : "unfocused"} ${wsp.active ? "active" : "inactive"} ${wsp.occupied ? "occupied" : "empty"}"
+          :onclick "niri msg action focus-workspace ${wsp.name}"
+        {wsp.occupied ? "◆" : "◇"})))
+  ))
+(defvar workspaces_1 "")
+(defvar workspaces_2 "")
 
 
 (defwidget time []
@@ -39,20 +63,6 @@
 (defpoll month    :interval "1h"  "date +%b | tr [:lower:] [:upper:]")
 
 
-(defwidget volume []
-  (scale :class "volume-scale"
-    :orientation "v"
-    :min 0
-    :max 101
-    :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ $(echo \"scale=2; {}/100\" | bc)"
-    :height 100
-    :flipped true
-    :value volume
-    :valign "fill"
-  ))
-(defpoll volume :interval "0.5s" "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2 * 100}' || true")
-
-
 (defwidget music []
   (box :class "music"
     :orientation "v"
@@ -63,10 +73,10 @@
       :width primary_width
       :height primary_width
       :style "background-image: url('${music_cover}');"
-      :onscroll "if [ '{}' == 'up' ]; then playerctl next; else playerctl previous; fi"
       :onclick "playerctl play-pause"
+      :onscroll "if [ '{}' == 'up' ]; then playerctl next; else playerctl previous; fi"
     )
-    (scale :class "music-progress"
+    (scale :class "progress-horizontal"
       :orientation "h"
       :min 0
       :max music_length
@@ -75,22 +85,20 @@
       :height 10
       :value music_position
     )
-    (label :class "music_title"
-      :text music_title
-      :wrap true
-      :justify "center"
-    )
-    (label :class "music_artist"
-      :text music_artist
-      :wrap true
-      :justify "center"
+    (scale :class "progress-horizontal"
+      :orientation "h"
+      :min 0
+      :max 101
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ $(echo \"scale=2; {}/100\" | bc)"
+      :height 10
+      :value volume
+      :valign "fill"
     )
   ))
-(deflisten music_cover "playerctl --follow metadata --format '{{ mpris:artUrl }}' || true")
-(deflisten music_artist "playerctl --follow metadata --format '{{ artist }}' || true")
-(deflisten music_title "playerctl --follow metadata --format '{{ title }}' || true")
-(defpoll music_position :interval "1s" "./music_info --position || true")
-(defpoll music_length :interval "1s" "./music_info --length || true")
+(defvar volume "")
+(defvar music_cover "")
+(defvar music_position "")
+(defvar music_length "")
 
 
 (defwidget power []
@@ -133,19 +141,19 @@
   (eventbox :onscroll "if [ '{}' == 'down' ]; then niri msg action focus-column-right; else niri msg action focus-column-left; fi"
     :vexpand true
     :valign "fill"
-  :style "background-color: #8ec07c; border-radius: 10px;"))
+    :style "background-color:rgba(142, 192, 124, 0); border-radius: 10px;"))
 
 
 (defwindow niri_scroller
   :monitor "LG TV SSCR2"
   :stacking "fg"
-  :geometry (geometry :x 0 :y 0 :width "800px" :height "5px" :anchor "bottom center")
+  :geometry (geometry :x 0 :y 2 :width "1600px" :height "12px" :anchor "bottom center")
   :reserve (struts :distance "10px" :side "bottom")
   :exclusive false
   (niri-scroller))
 
 (defwindow bar
-  :monitor "LG TV SSCR2"
+  :monitor "ARZOPA"
   :stacking "fg"
-  :geometry (geometry :x 10 :y 10 :width "50px" :height "100%" :anchor "right center")
+  :geometry (geometry :x 10 :y 10 :width "50px" :height "100%" :anchor "left center")
   (bar))

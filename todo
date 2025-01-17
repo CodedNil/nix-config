@@ -1,18 +1,8 @@
-fix status bar https://github.com/elkowar/eww/
-on bar, have gnome like pills for workspace display maybe iwth icons
-in the middle have date, time and music info/buttons
-on the right have the taskbar icons and power buttons
-perhaps try vertical bar
-osd for switching music tracks
-https://github.com/YaLTeR/niri/wiki/IPC
-https://github.com/saimoomedits/eww-widgets
-
 daily updater script that autoruns, compares query of packages before and after then adds changes to a file logging it like spotify 1.05 > 1.06
 then have a widget that shows the output of these output changes, cleans the log after reading it so i can see whats changed
 
 greetd greeter instead of cosmic
 
-named workspaces, discord on second etc
 super key alone for launcher, or a faster way to launch it
 better access for consume and expel windows
 

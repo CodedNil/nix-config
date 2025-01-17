@@ -15,6 +15,25 @@ window {
   padding: 5px;
 }
 
+// Workspaces
+.workspace-button {
+  all: unset;
+  background: none;
+  &.active {
+    color: $foreground;
+  }
+  &.inactive {
+    color: #665c54;
+  }
+  &.focused {
+    font-size: 20px;
+  }
+  &.unfocused {
+    font-size: 15px;
+  }
+}
+
+
 // Time and date
 .time {
   font-size: 24px;
@@ -38,16 +57,10 @@ window {
 	border-radius: 100px;
   border: 1px solid #665c54;
 }
-
 .music_title {
-  font-size: 12px;
-}
-
-.music_artist {
   font-size: 10px;
 }
-
-.music-progress {
+.progress-horizontal {
   padding: 0px;
   slider {
     all: unset;
@@ -56,6 +69,7 @@ window {
     background-color: #1d2021;
     min-height: 10px;
     border-radius: 10px;
+    border: none;
     transition: background-color 0.3s;
     &:hover {
       background-color: #232628;
@@ -64,30 +78,7 @@ window {
   highlight {
     background-color: #665c54;
     border-radius: 10px;
-    transition: background-color 0.3s;
-    &:hover {
-      background-color: #8c7e74;
-    }
-  }
-}
-
-.volume-scale {
-  padding: 0px;
-  slider {
-    all: unset;
-  }
-  trough {
-    background-color: #1d2021;
-    min-width: 50px;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-    &:hover {
-      background-color: #232628;
-    }
-  }
-  highlight {
-    background-color: #665c54;
-    border-radius: 10px;
+    border: none;
     transition: background-color 0.3s;
     &:hover {
       background-color: #8c7e74;
@@ -97,5 +88,7 @@ window {
 
 // Power menu
 .power-button {
+  all: unset;
   background: transparent;
+  border: none;
 }
