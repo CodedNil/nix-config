@@ -1,4 +1,4 @@
-(defvar primary_width 50)
+(defvar primary_width 40)
 
 (defwidget bar []
   (box :orientation "v"
@@ -145,14 +145,14 @@
 
 (defwindow niri_scroller
   :monitor "LG TV SSCR2"
-  :stacking "overlay"
-  :geometry (geometry :x 0 :y 2 :width "1600px" :height "12px" :anchor "bottom center")
+  :stacking "fg"
+  :geometry (geometry :x 0 :y 0 :width "1600px" :height "12px" :anchor "bottom center")
   :reserve (struts :distance "10px" :side "bottom")
   :exclusive false
   (niri-scroller))
 
 (defwindow bar
   :monitor "ARZOPA"
-  :stacking "overlay"
-  :geometry (geometry :x 10 :y 10 :width "50px" :height "100%" :anchor "left center")
+  :stacking "fg"
+  :geometry (geometry :x 4 :y 0 :width "40px" :height "100%" :anchor "left center")
   (bar))

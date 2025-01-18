@@ -14,6 +14,7 @@
     xwayland-satellite
     wlr-randr
     playerctl
+    bc
     bibata-cursors
   ];
 
@@ -275,6 +276,7 @@
       services.swayosd = {
         enable = true;
         display = "HDMI-A-1";
+        stylePath = ./configs/swayosd.css;
       };
 
       # Application launcher
