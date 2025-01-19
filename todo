@@ -7,7 +7,12 @@ default app configs https://wiki.nixos.org/wiki/Default_applications
 
 steam settings
 
-zen browser mods and settings # NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar # browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily
+zen browser mods and settings
+NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar
+https://github.com/0xc000022070/zen-browser-flake
+https://github.com/zen-browser/theme-store
+https://github.com/greeeen-dev/natsumi-browser
+browser.sesionstore.restore_on_demand browser.sessionstore.restore_pinned_tabs_on_demand browser.sessionstore.restore_tabs_lazily toolkit.tabbox.switchByScrolling
 
 home assistant keybinds
 
