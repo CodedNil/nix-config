@@ -121,7 +121,7 @@
           (button
             :class "power-button"
             :tooltip "Logout"
-            :onclick "niri msg quit"
+            :onclick "niri msg action quit"
             (image :path "./icons/lock.svg"))
           
           (button
