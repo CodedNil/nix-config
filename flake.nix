@@ -5,11 +5,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-
     niri.url = "github:sodiboo/niri-flake";
-
     anyrun.url = "github:anyrun-org/anyrun";
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
     nixcord.url = "github:kaylorben/nixcord";
@@ -21,7 +17,6 @@
       self,
       nixpkgs,
       home-manager,
-      nixos-cosmic,
       niri,
       anyrun,
       spicetify-nix,
@@ -51,14 +46,6 @@
 
                 niri.nixosModules.niri
                 { nixpkgs.overlays = [ niri.overlays.niri ]; }
-
-                nixos-cosmic.nixosModules.default
-                {
-                  nix.settings = {
-                    substituters = [ "https://cosmic.cachix.org/" ];
-                    trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-                  };
-                }
 
                 ./common.nix
                 ./compositor.nix

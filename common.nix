@@ -43,44 +43,7 @@
   };
 
   # Enable greeter
-  services.displayManager.cosmic-greeter.enable = true;
-  # services.greetd.enable = true;
-  # programs.regreet = {
-  #   enable = true;
-  #   settings = {
-  #     background = {
-  #       path = "/home/dan/nix-config/configs/greeter.jpg";
-  #       fit = "Fill"; # Available values: "Fill", "Contain", "Cover", "ScaleDown"
-  #     };
-  #     GTK = {
-  #       application_prefer_dark_theme = true;
-  #       cursor_theme_name = lib.mkDefault "Bibata-Modern-Ice";
-  #       icon_theme_name = "Adwaita";
-  #       theme_name = "Adwaita";
-  #     };
-  #     commands = {
-  #       reboot = [
-  #         "systemctl"
-  #         "reboot"
-  #       ];
-  #       poweroff = [
-  #         "systemctl"
-  #         "poweroff"
-  #       ];
-  #     };
-  #     appearance = {
-  #       greeting_msg = "Welcome back!";
-  #     };
-  #     widget = {
-  #       clock = {
-  #         format = "%a %H:%M";
-  #         resolution = "500ms";
-  #         timezone = "Europe/London";
-  #         label_width = 150;
-  #       };
-  #     };
-  #   };
-  # };
+  services.xserver.displayManager.gdm.enable = true;
 
   # Enable OpenGL
   hardware.graphics.enable = true;
@@ -211,14 +174,14 @@
     xdg.desktopEntries.shutdown = {
       name = "Shutdown";
       exec = "systemctl poweroff";
-      icon = ./icons/shutdown.svg;
+      icon = ./configs/eww/icons/shutdown.svg;
       type = "Application";
       categories = [ "System" ];
     };
     xdg.desktopEntries.reboot = {
       name = "Reboot";
       exec = "systemctl reboot";
-      icon = ./icons/reboot.svg;
+      icon = ./configs/eww/icons/reboot.svg;
       type = "Application";
       categories = [ "System" ];
     };

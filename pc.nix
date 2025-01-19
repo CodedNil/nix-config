@@ -142,6 +142,7 @@
         rm -rf ~/.cache/thumbnails
         rm -rf ~/.local/share/Trash/files
         rm -rf ~/.local/share/Trash/info
+        rm -rf ~/Pictures/Screenshots
         rm -f ~/.bash_history
         rm -f ~/.local/share/fish/fish_history
         wl-copy --clear
