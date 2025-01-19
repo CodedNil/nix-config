@@ -106,7 +106,7 @@
             app-id = "discord";
           }
         ];
-        default-column-width.proportion = 0.75;
+        default-column-width.proportion = 0.7;
         open-on-workspace = "b_chat";
         open-focused = true;
       }
@@ -116,26 +116,8 @@
             app-id = "TeamSpeak";
           }
         ];
-        default-column-width.proportion = 0.25;
+        default-column-width.proportion = 0.3;
         open-on-workspace = "b_chat";
-        open-focused = true;
-      }
-      {
-        matches = [
-          {
-            app-id = "code";
-          }
-        ];
-        default-column-width.proportion = 0.5;
-        open-focused = true;
-      }
-      {
-        matches = [
-          {
-            app-id = "vivaldi";
-          }
-        ];
-        default-column-width.proportion = 0.6;
         open-focused = true;
       }
     ];

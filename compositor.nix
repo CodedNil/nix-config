@@ -24,6 +24,22 @@
     package = pkgs.niri-unstable;
   };
 
+  # Keyd binds
+  services.keyd = {
+    enable = true;
+    keyboards.default = {
+      ids = [ "*" ];
+      settings.global = {
+        overload_tap_timeout = 200; # Milliseconds to register a tap before timeout
+      };
+      settings.main = {
+        compose = "layer(meta)"; # Make the menu key press super
+        leftmeta = "overload(meta, macro(leftmeta+z))"; # Make left meta tap open anyrun keybind
+        capslock = "macro(leftshift+tab)"; # Bind capslock to shift+tab
+      };
+    };
+  };
+
   home-manager.users.dan =
     {
       config,
@@ -38,11 +54,11 @@
           always-center-single-column = true;
           center-focused-column = "never";
 
-          default-column-width.proportion = 0.4;
+          default-column-width.proportion = 0.35;
           preset-column-widths = [
             { proportion = 0.35; }
-            { proportion = 0.6; }
-            { proportion = 0.8; }
+            { proportion = 0.5; }
+            { proportion = 0.7; }
           ];
 
           focus-ring = {
@@ -111,12 +127,52 @@
               bottom-right = 8.0;
             };
           }
+          {
+            matches = [
+              {
+                app-id = "org.kde.polkit-kde-authentication-agent-1";
+              }
+            ];
+            open-floating = true;
+          }
+          {
+            matches = [
+              {
+                app-id = "code";
+              }
+            ];
+            default-column-width.proportion = 0.5;
+          }
+          {
+            matches = [
+              {
+                app-id = "vivaldi";
+              }
+            ];
+            default-column-width.proportion = 0.6;
+          }
+          {
+            matches = [
+              {
+                app-id = "org.gnome.Nautilus";
+              }
+            ];
+            default-column-width.proportion = 0.42;
+          }
+          {
+            matches = [
+              {
+                app-id = "com.raggesilver.BlackBox";
+              }
+            ];
+            default-column-width.proportion = 0.3;
+          }
         ];
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
 
           # Application launchers
-          "Mod+D".action = spawn [
+          "Mod+Z".action = spawn [
             "sh"
             "-c"
             "pkill anyrun || anyrun"
@@ -125,6 +181,8 @@
           "Mod+E".action = spawn "nautilus";
           "Mod+W".action = spawn "vivaldi";
           "Mod+S".action = spawn "spotify";
+          "Mod+D".action = spawn "discord";
+          "Mod+Shift+D".action = spawn "TeamSpeak";
           "Ctrl+Alt+Delete".action = spawn "missioncenter";
 
           "Mod+Q".action = close-window;

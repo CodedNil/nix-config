@@ -46,6 +46,30 @@
         messagePeek = "github:Domis-Vencord-Plugins/MessagePeek/4176cee88e7f47a25af5302196a185bf06b62a3d";
         # unreadCountBadge = "${equicordRepo}/src/equicordplugins/unreadCountBadge";
       };
+      # Hide buttons on the chat bar
+      quickCss = ''
+        # [aria-label="Apps"] {
+        #   display:none
+        # }
+        # [aria-label="Open GIF picker"] {
+        #   display:none
+        # }
+        [aria-label="Open sticker picker"] {
+          display:none
+        }
+        [aria-label="Send a gift"] {
+          display:none
+        }
+        # [aria-label="Boost this server"] {
+        #   display:none
+        # }
+        # [id="channel-attach-THREAD"] {
+        #   display:none
+        # }
+        # div[class^="channelAppLauncher"] {
+        #   display:none
+        # }
+      '';
       extraConfig = {
         plugins = {
           betterActivities = {
@@ -107,6 +131,7 @@
       };
       config = {
         disableMinSize = true;
+        useQuickCss = true;
         plugins = {
           alwaysTrust.enable = true;
           clearURLs.enable = true;

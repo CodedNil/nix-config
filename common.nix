@@ -130,8 +130,13 @@
     "flakes"
   ];
 
-  # Enable polkit agent
+  # Enable key services
   security.soteria.enable = true;
+  services.gvfs.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  programs.dconf.enable = true;
+  xdg.mime.enable = true;
+  xdg.icons.enable = true;
 
   # Disable building documentation
   documentation.enable = false;
@@ -151,8 +156,6 @@
     ];
     shell = pkgs.fish;
   };
-  services.gnome.gnome-keyring.enable = true;
-  programs.dconf.enable = true;
 
   # Home manager
   home-manager.users.dan = {

@@ -108,12 +108,15 @@
       :orientation "v"
       :space-evenly "false"
       :vexpand "false"
+      :spacing "10"
+      
       (revealer	:transition "slideup"
         :reveal power
         :duration "550ms"
         (box
           :orientation "v"
           :space-evenly "false"
+          :spacing "10"
           
           (button
             :class "power-button"
