@@ -131,7 +131,6 @@
   ];
 
   # Enable key services
-  security.soteria.enable = true;
   services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
   programs.dconf.enable = true;
@@ -261,6 +260,7 @@
     rustup # RUST Installer for rust
     nixfmt-rfc-style # HASKELL Formatter for nix files
     trunk # RUST To compile WASM apps
+    gcc # C++ code linker
     jq # C Command line JSON processor
 
     # Misc

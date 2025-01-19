@@ -117,57 +117,36 @@
           theme = "Bibata-Modern-Ice";
           size = 24;
         };
-        window-rules = [
-          {
-            clip-to-geometry = true;
-            geometry-corner-radius = {
-              top-left = 8.0;
-              top-right = 8.0;
-              bottom-left = 8.0;
-              bottom-right = 8.0;
+        window-rules =
+          let
+            createRule = app-id: proportion: {
+              matches = [ { app-id = app-id; } ];
+              default-column-width.proportion = proportion;
             };
-          }
-          {
-            matches = [
-              {
-                app-id = "org.kde.polkit-kde-authentication-agent-1";
-              }
-            ];
-            open-floating = true;
-          }
-          {
-            matches = [
-              {
-                app-id = "code";
-              }
-            ];
-            default-column-width.proportion = 0.5;
-          }
-          {
-            matches = [
-              {
-                app-id = "vivaldi";
-              }
-            ];
-            default-column-width.proportion = 0.6;
-          }
-          {
-            matches = [
-              {
-                app-id = "org.gnome.Nautilus";
-              }
-            ];
-            default-column-width.proportion = 0.42;
-          }
-          {
-            matches = [
-              {
-                app-id = "com.raggesilver.BlackBox";
-              }
-            ];
-            default-column-width.proportion = 0.3;
-          }
-        ];
+          in
+          [
+            {
+              clip-to-geometry = true;
+              geometry-corner-radius = {
+                top-left = 8.0;
+                top-right = 8.0;
+                bottom-left = 8.0;
+                bottom-right = 8.0;
+              };
+            }
+            {
+              matches = [
+                {
+                  app-id = "org.kde.polkit-kde-authentication-agent-1";
+                }
+              ];
+              open-floating = true;
+            }
+            (createRule "vivaldi" 0.6)
+            (createRule "code" 0.5)
+            (createRule "org.gnome.Nautilus" 0.42)
+            (createRule "com.raggesilver.BlackBox" 0.3)
+          ];
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
 

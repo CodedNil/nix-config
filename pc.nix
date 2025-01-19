@@ -106,7 +106,7 @@
             app-id = "discord";
           }
         ];
-        default-column-width.proportion = 0.7;
+        default-column-width.proportion = 0.75;
         open-on-workspace = "b_chat";
         open-focused = true;
       }
@@ -116,7 +116,7 @@
             app-id = "TeamSpeak";
           }
         ];
-        default-column-width.proportion = 0.3;
+        default-column-width.proportion = 0.25;
         open-on-workspace = "b_chat";
         open-focused = true;
       }
@@ -140,7 +140,8 @@
       function cleanup
         echo "Cleaning up..."
         rm -rf ~/.cache/thumbnails
-        rm -rf ~/.local/share/Trash
+        rm -rf ~/.local/share/Trash/files
+        rm -rf ~/.local/share/Trash/info
         rm -f ~/.bash_history
         rm -f ~/.local/share/fish/fish_history
         wl-copy --clear
