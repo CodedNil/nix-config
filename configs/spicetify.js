@@ -51,5 +51,6 @@
     setNestedProperty(lucidSettings, 'state.backgroundSettings.styles.animated.blur', 64);
     setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.backgroundImageMode', 'none');
     setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.playlistViewMode', 'compact');
+    setNestedProperty(lucidSettings, 'state.settingAccessPosition', 'context-menu');
     updateLocalStorage(lucidSettingsKey, lucidSettings);
 })();

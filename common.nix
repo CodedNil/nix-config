@@ -211,6 +211,10 @@
       "org/gnome/desktop/interface" = {
         "color-scheme" = "prefer-dark";
       };
+      "org.gnome.desktop.privacy" = {
+        "remember-app-usage" = "false";
+        "remember-recent-files" = "false";
+      };
       "org/gtk/gtk4/settings/file-chooser" = {
         "show-hidden" = true;
         "sort-directories-first" = true;
@@ -266,7 +270,7 @@
     dconf-editor # GTK4 Vala Configuration editor
 
     # Browsing
-    inputs.zen-browser.packages."${system}".beta # CSS JS Web browser
+    inputs.zen-browser.packages."${system}".default # CSS JS Web browser
     vivaldi # CSS JS Web browser
     tor-browser # CSS JS Web browser
 
