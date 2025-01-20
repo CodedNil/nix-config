@@ -50,6 +50,7 @@
                 ./common.nix
                 ./compositor.nix
                 ./shell.nix
+                ./configs/zen/zen.nix
                 specificModule
               ];
             };
