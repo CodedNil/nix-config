@@ -1,0 +1,43 @@
+/* Hide toolbar button text for bookmarks */
+#personal-bookmarks .bookmark-item .toolbarbutton-text {
+    display: none !important;
+}
+
+/* Make bookmark icons larger */
+#personal-bookmarks .toolbarbutton-icon {
+    transform: scale(2) !important;
+    padding: 3px;
+}
+
+/* Give bookmark folders a background */
+#personal-bookmarks toolbarbutton[container="true"] .toolbarbutton-icon {
+    background-color: var(--zen-colors-secondary) !important; 
+    border-radius: 4px;
+    margin: 3px;
+}
+
+/* Set custom icon for the folders */
+#personal-bookmarks toolbarbutton[label="Main"] .toolbarbutton-icon {
+    list-style-image: url("icons/main.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Creative"] .toolbarbutton-icon {
+    list-style-image: url("icons/creative.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="News"] .toolbarbutton-icon {
+    list-style-image: url("icons/news.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Work"] .toolbarbutton-icon {
+    list-style-image: url("icons/work.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Home"] .toolbarbutton-icon {
+    list-style-image: url("icons/home.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Server"] .toolbarbutton-icon {
+    list-style-image: url("icons/server.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Learning"] .toolbarbutton-icon {
+    list-style-image: url("icons/learning.png") !important;
+}
+#personal-bookmarks toolbarbutton[label="Other"] .toolbarbutton-icon {
+    list-style-image: url("icons/other.png") !important;
+}
