@@ -41,6 +41,7 @@
                   home-manager.sharedModules = [
                     nixcord.homeManagerModules.nixcord
                     spicetify-nix.homeManagerModules.default
+                    ./configs/zen/zen.nix
                   ];
                 }
 
@@ -50,7 +51,6 @@
                 ./common.nix
                 ./compositor.nix
                 ./shell.nix
-                ./configs/zen/zen.nix
                 specificModule
               ];
             };

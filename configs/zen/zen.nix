@@ -143,13 +143,11 @@ in
       text = ./configs/zen/profiles.ini;
       target = ".zen/profilestest.ini";
     };
-
     zen_profile = {
       enable = true;
       source = ./configs/zen/user.js;
       target = ".zen/profiletest.default/user.js";
     };
-
     zen_themes_json = {
       enable = true;
       source = ./configs/zen/zen-themes.json;
