@@ -143,6 +143,7 @@
               open-floating = true;
             }
             (createRule "vivaldi" 0.6)
+            (createRule "zen" 0.6)
             (createRule "code" 0.5)
             (createRule "org.gnome.Nautilus" 0.42)
             (createRule "com.raggesilver.BlackBox" 0.3)

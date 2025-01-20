@@ -83,7 +83,6 @@ let
         name = builtins.replaceStrings [ "." ] [ "_" ] file.target;
         value = {
           enable = true;
-          force = true;
           source = file.source;
           target = file.target;
         };
@@ -98,25 +97,27 @@ in
       enable = true;
       source = ./profiles.ini;
       target = ".zen/profiles.ini";
-      force = true;
     };
     zen_user_js = {
       enable = true;
       source = ./user.js;
       target = "${profileBasePath}/user.js";
-      force = true;
     };
-    zen_themes_json = {
+    zen_user_chrome_css = {
       enable = true;
-      source = ./zen-themes.json;
-      target = "${profileBasePath}/zen-themes.json";
-      force = true;
+      source = ./userChrome.css;
+      target = "${profileBasePath}/chrome/userChrome.css";
+    };
+    zen_bookmark_icons = {
+      enable = true;
+      recursive = true;
+      source = ./icons;
+      target = "${profileBasePath}/chrome/icons";
     };
     zen_themes_css = {
       enable = true;
       text = cssImportText;
       target = "${profileBasePath}/chrome/zen-themes.css";
-      force = true;
     };
   } // themeFileEntries;
 }
