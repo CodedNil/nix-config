@@ -159,7 +159,18 @@
             name = "spicetify.js";
           })
         ];
-        theme = spicePkgs.themes.lucid;
+        theme = {
+          name = "Lucid";
+          src =
+            pkgs.fetchFromGitHub {
+              owner = "sanoojes";
+              repo = "Spicetify-Lucid";
+              rev = "dc0616a616608442d62da4821a9f85ebc12578d0";
+              hash = "sha256-kWBaSH9n24ClNehSeMhT6Sa41vwu2rVsFsJzwuXBDJI=";
+            }
+            + /src;
+          overwriteAssets = true;
+        };
       };
 
     # NixConfig shortcut
@@ -229,6 +240,8 @@
   environment.systemPackages = with pkgs; [
     # Development
     rustup # RUST Installer for rust
+    go # GO The go programming language
+    nh # RUST Reimplements nix rebuild with visualised upgrade diff
     nixfmt-rfc-style # HASKELL Formatter for nix files
     trunk # RUST To compile WASM apps
     gcc # C++ code linker

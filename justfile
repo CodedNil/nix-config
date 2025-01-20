@@ -1,5 +1,5 @@
 default:
-  sudo nixos-rebuild switch --flake '.#dan-pc'
+  nh os switch . --hostname="dan-pc" --update
 
 work:
   sudo nixos-rebuild switch --flake '.#dan-work'

@@ -189,6 +189,10 @@
           "Mod+Ctrl+Down".action = focus-workspace-down;
           "Mod+Ctrl+Up".action = focus-workspace-up;
 
+          # Focus monitors left and right with mod+alt+left and right
+          "Mod+Alt+Left".action = focus-monitor-left;
+          "Mod+Alt+Right".action = focus-monitor-right;
+
           # Scroll to move focus and columns, shift to move window with it
           "Mod+WheelScrollDown".action = focus-column-right;
           "Mod+WheelScrollUp".action = focus-column-left;

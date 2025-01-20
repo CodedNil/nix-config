@@ -1,45 +1,56 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   # Fetch the entire theme store repository
   themeStoreRepo = pkgs.fetchFromGitHub {
     owner = "zen-browser";
     repo = "theme-store";
-    rev = "main";
+    rev = "dcbff62ade1eeacd831390f9ecff1535b65788bbhere";
+    sha256 = "sha256-wa+wQ7oZNUHzmq0zgNSpx3o4Vc/O5IWjSCQpPtVcKtI=";
   };
 
   # Base directory within the theme store
   themeBaseDir = "${themeStoreRepo}/themes";
 
   # Base path for the profiles
-  profileBasePath = ".zen/profiletest.default";
+  profileBasePath = ".zen/profile.default";
 
   # Function to gather theme CSS and generate import statements
-  gatherThemeData = id: name: preferences: {
-    cssImportLine = "@import url(\"file://${config.home.homeDirectory}/${profileBasePath}/chrome/zen-themes/${name}/chrome.css\");";
-    files =
-      [
-        {
-          source = "${themeBaseDir}/${id}/chrome.css";
-          target = "${profileBasePath}/chrome/zen-themes/${name}/chrome.css";
-        }
-        {
-          source = "${themeBaseDir}/${id}/readme.md";
-          target = "${profileBasePath}/chrome/zen-themes/${name}/readme.md";
-        }
-      ]
-      ++ (
-        if preferences then
-          [
-            {
-              source = "${themeBaseDir}/${id}/preferences.json";
-              target = "${profileBasePath}/chrome/zen-themes/${name}/preferences.json";
-            }
-          ]
-        else
-          [ ]
-      );
-  };
+  gatherThemeData =
+    id: name: preferences:
+    let
+      transformedName = lib.toLower (builtins.replaceStrings [ " " ] [ "_" ] name);
+    in
+    {
+      cssImportLine = "@import url(\"file://${config.home.homeDirectory}/${profileBasePath}/chrome/zen-themes/${name}/chrome.css\");";
+      files =
+        [
+          {
+            source = "${themeBaseDir}/${id}/chrome.css";
+            target = "${profileBasePath}/chrome/zen-themes/${transformedName}/chrome.css";
+          }
+          {
+            source = "${themeBaseDir}/${id}/readme.md";
+            target = "${profileBasePath}/chrome/zen-themes/${transformedName}/readme.md";
+          }
+        ]
+        ++ (
+          if preferences then
+            [
+              {
+                source = "${themeBaseDir}/${id}/preferences.json";
+                target = "${profileBasePath}/chrome/zen-themes/${transformedName}/preferences.json";
+              }
+            ]
+          else
+            [ ]
+        );
+    };
 
   # List of themes
   themes = [
@@ -69,7 +80,7 @@ let
     acc
     // builtins.listToAttrs (
       map (file: {
-        name = replaceStrings [ "." ] [ "_" ] file.target;
+        name = builtins.replaceStrings [ "." ] [ "_" ] file.target;
         value = {
           enable = true;
           force = true;
@@ -85,23 +96,27 @@ in
   home.file = {
     zen_profiles = {
       enable = true;
-      text = ./configs/zen/profiles.ini;
-      target = ".zen/profilestest.ini";
+      source = ./profiles.ini;
+      target = ".zen/profiles.ini";
+      force = true;
     };
-    zen_profile = {
+    zen_user_js = {
       enable = true;
-      source = ./configs/zen/user.js;
+      source = ./user.js;
       target = "${profileBasePath}/user.js";
+      force = true;
     };
     zen_themes_json = {
       enable = true;
-      source = ./configs/zen/zen-themes.json;
+      source = ./zen-themes.json;
       target = "${profileBasePath}/zen-themes.json";
+      force = true;
     };
     zen_themes_css = {
       enable = true;
-      source = cssImportText;
+      text = cssImportText;
       target = "${profileBasePath}/chrome/zen-themes.css";
+      force = true;
     };
   } // themeFileEntries;
 }

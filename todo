@@ -1,11 +1,8 @@
-greetd greeter instead of cosmic
-
-https://github.com/Gerg-L/spicetify-nix/issues/245
-Fix lucid theme settings https://github.com/sanoojes/Spicetify-Lucid/issues/91
-
 default app configs https://wiki.nixos.org/wiki/Default_applications
 
 steam settings
+
+enc button on sidebar
 
 zen browser mods and settings
 NoHighlightSplit, FloatingStatusBar, NoSearchShortcutIcons, BetterTabIndicators, FluidURL, OnlyCloseOnHover, SuperPins, SuperUrlBar, AnimationsPlus, Quietify, CleanerExtensionMenu, BetterFindBar, FloatingHistory, TabPreviewEnhanced, LoadBar
