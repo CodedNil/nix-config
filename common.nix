@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  lib,
   ...
 }:
 
@@ -94,8 +93,8 @@
   ];
 
   # Enable key services
-  services.gvfs.enable = true;
   services.gnome.gnome-keyring.enable = true;
+  services.gvfs.enable = true;
   programs.dconf.enable = true;
   xdg.mime.enable = true;
   xdg.icons.enable = true;
@@ -136,8 +135,10 @@
       };
     };
 
+    # App specific configs
     imports = [
       ./configs/discord.nix
+      ./configs/zen/zen.nix
     ];
 
     # Spicetify
@@ -182,6 +183,13 @@
       name = "Reboot";
       exec = "systemctl reboot";
       icon = ./configs/eww/icons/reboot.svg;
+      type = "Application";
+      categories = [ "System" ];
+    };
+    xdg.desktopEntries.logout = {
+      name = "Logout";
+      exec = "niri msg action quit";
+      icon = ./configs/eww/icons/lock.svg;
       type = "Application";
       categories = [ "System" ];
     };

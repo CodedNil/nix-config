@@ -321,15 +321,9 @@
       programs.anyrun = {
         enable = true;
         config = {
-          x = {
-            fraction = 0.5;
-          };
-          y = {
-            fraction = 0.3;
-          };
-          width = {
-            fraction = 0.3;
-          };
+          x.fraction = 0.5;
+          y.fraction = 0.3;
+          width.fraction = 0.3;
           hideIcons = false;
           ignoreExclusiveZones = false;
           layer = "overlay";
@@ -337,7 +331,6 @@
           closeOnClick = true;
           showResultsImmediately = false;
           maxEntries = 20;
-
           plugins = [
             inputs.anyrun.packages.${pkgs.system}.applications
             inputs.anyrun.packages.${pkgs.system}.rink
