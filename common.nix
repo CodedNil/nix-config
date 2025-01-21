@@ -126,6 +126,7 @@
       userName = "Dan Lock";
       userEmail = "codenil@proton.me";
     };
+    programs.git.lfs.enable = true;
 
     # MPV media player with auto loop
     programs.mpv = {
@@ -164,7 +165,7 @@
                 owner = "ohitstom";
                 repo = "spicetify-extensions";
                 rev = "0fa2e593742011a29f8ec54c32bf642205ce82ff";
-                hash = "";
+                hash = "sha256-w8viHMXhuXIlo1WJ94Jo2bWtYQr1RGviXZhVVm+rvns=";
               }
               + /quickQueue;
             name = "quickQueue.js";
@@ -174,8 +175,8 @@
               pkgs.fetchFromGitHub {
                 owner = "Konsl";
                 repo = "spicetify-extensions";
-                rev = "0fa2e593742011a29f8ec54c32bf642205ce82ff";
-                hash = "";
+                rev = "72c0a46c920748f86b3c731d72c64223b104f6de";
+                hash = "sha256-9p8fz2KVRVkj3LT+zRRSETtVbxhAJ2Ar7aaM/1uQRBY=";
               }
               + /playback-bar-waveform/dist;
             name = "playback-bar-waveform.js";
@@ -272,6 +273,7 @@
     trunk # RUST To compile WASM apps
     gcc # C++ code linker
     jq # C Command line JSON processor
+    codeium # Codeium language server for vscode
 
     # Misc
     vscode # CSS JS Code editor
@@ -313,6 +315,8 @@
     inkscape # GTK3 C++ Vector editor
   ];
   programs.steam.enable = true;
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = [ ];
 
   # This value determines the NixOS release from which the default settings for stateful data, like file locations and database versions on your system were taken.
   system.stateVersion = "24.11";
