@@ -158,6 +158,28 @@
             src = ./configs;
             name = "spicetify.js";
           })
+          ({
+            src =
+              pkgs.fetchFromGitHub {
+                owner = "ohitstom";
+                repo = "spicetify-extensions";
+                rev = "0fa2e593742011a29f8ec54c32bf642205ce82ff";
+                hash = "";
+              }
+              + /quickQueue;
+            name = "quickQueue.js";
+          })
+          ({
+            src =
+              pkgs.fetchFromGitHub {
+                owner = "Konsl";
+                repo = "spicetify-extensions";
+                rev = "0fa2e593742011a29f8ec54c32bf642205ce82ff";
+                hash = "";
+              }
+              + /playback-bar-waveform/dist;
+            name = "playback-bar-waveform.js";
+          })
         ];
         theme = {
           name = "Lucid";
