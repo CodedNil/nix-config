@@ -156,10 +156,6 @@
           beautifulLyrics
           starRatings
           ({
-            src = ./configs;
-            name = "spicetify.js";
-          })
-          ({
             src =
               pkgs.fetchFromGitHub {
                 owner = "ohitstom";
@@ -180,6 +176,10 @@
               }
               + /playback-bar-waveform/dist;
             name = "playback-bar-waveform.js";
+          })
+          ({
+            src = ./configs;
+            name = "spicetify.js";
           })
         ];
         theme = {

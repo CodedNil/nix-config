@@ -34,23 +34,32 @@
 
     // Update specific parts of lucid-settings
     const lucidSettingsKey = "lucid-settings";
-    const lucidSettings = JSON.parse(localStorage.getItem(lucidSettingsKey) || "{}");
-
-    // Helper function to safely access or initialize an object by key
-    function setNestedProperty(obj, path, value) {
-        path.split('.').reduce((acc, key, index, array) => {
-          if (index === array.length - 1) {
-            acc[key] = value; // Set the final value
-          } else {
-            acc[key] = acc[key] || {}; // Ensure the object exists
-          }
-          return acc[key];
-        }, obj);
+    if (localStorage.getItem(lucidSettingsKey)) {
+        const lucidSettings = JSON.parse(localStorage.getItem(lucidSettingsKey) || "{}");
+    
+        // Helper function to safely access or initialize an object by key
+        function setNestedProperty(obj, path, value) {
+            path.split('.').reduce((acc, key, index, array) => {
+              if (index === array.length - 1) {
+                acc[key] = value; // Set the final value
+              } else {
+                acc[key] = acc[key] || {}; // Ensure the object exists
+              }
+              return acc[key];
+            }, obj);
+        }
+        setNestedProperty(lucidSettings, 'state.backgroundSettings.mode', 'animated');
+        setNestedProperty(lucidSettings, 'state.backgroundSettings.styles.animated', {
+          "blur": 64, // 32
+          "time": 40, // 45
+          "opacity": 1, // 1
+          "saturation": 1.3, // 1.1
+          "contrast": 1.15, // 1.2
+          "brightness": 0.6 // 0.475
+        });
+        setNestedProperty(lucidSettings, 'state.colorSettings.isDynamicColor', true);
+        setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.backgroundImageMode', 'none');
+        setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.playlistViewMode', 'compact');
+        updateLocalStorage(lucidSettingsKey, lucidSettings);
     }
-    setNestedProperty(lucidSettings, 'state.backgroundSettings.mode', 'animated');
-    setNestedProperty(lucidSettings, 'state.backgroundSettings.styles.animated.blur', 64);
-    setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.backgroundImageMode', 'none');
-    setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.playlistViewMode', 'compact');
-    setNestedProperty(lucidSettings, 'state.settingAccessPosition', 'context-menu');
-    updateLocalStorage(lucidSettingsKey, lucidSettings);
 })();

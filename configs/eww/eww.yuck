@@ -79,7 +79,7 @@
       :orientation "h"
       :min 0
       :max music_length
-      :onchange "playerctl position {}"
+      ; :onchange "playerctl position {}"
       :width primary_width
       :height 10
       :value music_position
