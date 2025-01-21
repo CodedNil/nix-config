@@ -1,25 +1,35 @@
 user_pref("browser.aboutConfig.showWarning", false);
+user_pref("privacy.donottrackheader.enabled", true);
+
+// Edit weather widget
 user_pref("browser.newtabpage.activity-stream.weather.display", "detailed");
 user_pref("browser.newtabpage.activity-stream.weather.temperatureUnits", "c");
+
+// Disable lazy restore
 user_pref("browser.sessionstore.restore_on_demand", false);
 user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", false);
 user_pref("browser.sessionstore.restore_tabs_lazily", false);
+
+// Disable saving logins
 user_pref("signon.rememberSignons", false);
-user_pref("privacy.donottrackheader.enabled", true);
 user_pref("extensions.formautofill.creditCards.enabled", false);
 user_pref("signon.autofillForms", false);
 
+// Tweaks to scrolling
 user_pref("general.autoScroll", true);
 user_pref("toolkit.tabbox.switchByScrolling", true);
 
+// UI customisation state
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"widget-overflow-fixed-list\":[],\"unified-extensions-area\":[\"ublock0_raymondhill_net-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"dearrow_ajay_app-browser-action\",\"openmultipleurls_ustat_de-browser-action\",\"vpn_proton_ch-browser-action\",\"_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action\"],\"nav-bar\":[\"personal-bookmarks\",\"urlbar-container\",\"back-button\",\"forward-button\",\"unified-extensions-button\"],\"toolbar-menubar\":[\"menubar-items\"],\"TabsToolbar\":[\"tabbrowser-tabs\"],\"vertical-tabs\":[],\"PersonalToolbar\":[],\"zen-sidebar-top-buttons\":[\"customizableui-special-spring15\",\"zen-workspaces-button\",\"customizableui-special-spring14\"],\"zen-sidebar-icons-wrapper\":[\"preferences-button\",\"78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action\",\"sync-button\",\"addon_darkreader_org-browser-action\",\"downloads-button\"]},\"seen\":[\"openmultipleurls_ustat_de-browser-action\",\"78272b6fa58f4a1abaac99321d503a20_proton_me-browser-action\",\"addon_darkreader_org-browser-action\",\"ublock0_raymondhill_net-browser-action\",\"vpn_proton_ch-browser-action\",\"_2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c_-browser-action\",\"sponsorblocker_ajay_app-browser-action\",\"dearrow_ajay_app-browser-action\",\"developer-button\"],\"dirtyAreaCache\":[\"unified-extensions-area\",\"nav-bar\",\"vertical-tabs\",\"zen-sidebar-icons-wrapper\",\"zen-sidebar-top-buttons\",\"PersonalToolbar\",\"toolbar-menubar\",\"TabsToolbar\"],\"currentVersion\":20,\"newElementCount\":16}");
 
+// Disable most suggestions in url bar
 user_pref("browser.urlbar.suggest.clipboard", false);
 user_pref("browser.urlbar.suggest.engines", false);
 user_pref("browser.urlbar.suggest.history", false);
 user_pref("browser.urlbar.suggest.openpage", false);
 user_pref("browser.urlbar.suggest.topsites", false);
 
+// Disable most sync types
 user_pref("services.sync.declinedEngines", "passwords,addresses,creditcards,forms,history");
 user_pref("services.sync.engine.addresses.available", false);
 user_pref("services.sync.engine.extension-storage", true);
@@ -44,56 +54,23 @@ user_pref("zen.view.compact.hide-toolbar", true);
 user_pref("zen.view.show-newtab-button-border-top", false);
 user_pref("zen.welcome-screen.seen", true);
 
-
-// user_pref("theme.custom_menubutton.custom", "url(chrome://branding/content/icon32.png)");
-// user_pref("theme.custom_menubutton.default", "Default");
-// user_pref("theme.customstatusbar.border_thickness", "2px");
-// user_pref("theme.customstatusbar.color_background", "var(--zen-colors-tertiary)");
-// user_pref("theme.customstatusbar.color_border", "var(--zen-colors-border)");
-// user_pref("theme.customstatusbar.margin", "8px");
-// user_pref("theme.customstatusbar.radius", "1000px");
-// user_pref("theme.customstatusbar.text_color", "var(--lwt-text-color)");
-// user_pref("theme.no_gaps.fixes.center_split_view", false);
-// user_pref("theme.no_gaps.gaps", false);
-// user_pref("theme.no_gaps.rounded_corners", false);
-// user_pref("theme.no_gaps.shadow", true);
-// user_pref("theme.no_gaps.single_toolbar.disable_navbar", false);
-// user_pref("theme.no_gaps.single_toolbar.hide_navbar", true);
-// user_pref("theme.no_gaps.split.gaps", true);
-// user_pref("theme.no_gaps.split.outline", true);
-// user_pref("theme.no_gaps.split.rounded_corners", true);
-// user_pref("theme.no_gaps.split.shadow", true);
-// user_pref("theme.no_gaps.split.single_toolbar.disable_navbar", false);
-// user_pref("theme.no_gaps.split.single_toolbar.hide_navbar", false);
-// user_pref("uc.essentials.box-like-corners", false);
-// user_pref("uc.essentials.color-scheme", "transparent");
-// user_pref("uc.essentials.gap", "Small");
-// user_pref("uc.essentials.width", "");
-// user_pref("uc.hide-close", true);
-// user_pref("uc.hide-maximize", true);
-// user_pref("uc.hide-minimize", true);
-// user_pref("uc.pins.bg", false);
-// user_pref("uc.pins.essentials-layout", false);
-// user_pref("uc.pins.hide-reset-button", true);
-// user_pref("uc.pins.legacy-layout", true);
-// user_pref("uc.pins.only-show-active", "");
-// user_pref("uc.superpins.border", "");
-// user_pref("uc.tabs.custom_color_hex", "#ffffff");
-// user_pref("uc.tabs.dim_unloaded", false);
-// user_pref("uc.tabs.preferred_color", "primary");
-// user_pref("uc.urlbar.blur-intensity", "");
-// user_pref("uc.urlbar.border", false);
-// user_pref("uc.urlbar.border-radius", false);
-// user_pref("uc.urlbar.custom-bg-color.mode", "");
-// user_pref("uc.urlbar.hide.container-info", "");
-// user_pref("uc.urlbar.icon.bookmark.removed", false);
-// user_pref("uc.urlbar.icon.left-side.removed", false);
-// user_pref("uc.urlbar.icon.pip.removed", false);
-// user_pref("uc.urlbar.icon.reader-mode.removed", false);
-// user_pref("uc.urlbar.icon.shield.removed", false);
-// user_pref("uc.urlbar.icon.show-on-hover", false);
-// user_pref("uc.urlbar.icon.split-view.removed", false);
-// user_pref("uc.urlbar.icon.zoom.removed", false);
-// user_pref("uc.urlbar.move-icon-into", false);
-// user_pref("uc.urltext.center", "advanced");
-// user_pref("w.urlbar.bg_color", "#0066ff66, #00ffff66, #0066ff66");
+// Zen mods settings
+user_pref("uc.essentials.box-like-corners", true);
+user_pref("uc.essentials.color-scheme", "transparent");
+user_pref("uc.essentials.gap", "Normal");
+user_pref("uc.essentials.width", "Normal");
+user_pref("uc.pins.bg", false);
+user_pref("uc.pins.essentials-layout", false);
+user_pref("uc.pins.hide-reset-button", true);
+user_pref("uc.pins.legacy-layout", true);
+user_pref("uc.tabs.custom_color_hex", "#ffffff");
+user_pref("uc.tabs.dim_unloaded", false);
+user_pref("uc.tabs.preferred_color", "");
+user_pref("uc.urlbar.blur-intensity", "");
+user_pref("uc.urlbar.border", false);
+user_pref("uc.urlbar.icon.left-side.removed", false);
+user_pref("uc.urlbar.icon.reader-mode.removed", false);
+user_pref("uc.urlbar.icon.shield.removed", true);
+user_pref("uc.urlbar.icon.show-on-hover", false);
+user_pref("uc.urltext.center", "normal");
+user_pref("w.urlbar.bg_color", "#0066ff66, #00ffff66, #0066ff66");

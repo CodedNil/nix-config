@@ -64,7 +64,6 @@ let
     (gatherThemeData "ae7868dc-1fa1-469e-8b89-a5edf7ab1f24" "Load Bar" false)
     (gatherThemeData "f50841b2-5e4a-4534-985d-b7f7b96088c2" "NoHighlightSplit" false)
     (gatherThemeData "d7076c31-f6c1-4f28-b2e8-15b95f5a3d6f" "No Search Shortcut Icons" false)
-    (gatherThemeData "4596d8f9-f0b7-4aeb-aa92-851222dc1888" "Only Close On Hover" false)
     (gatherThemeData "fd24f832-a2e6-4ce9-8b19-7aa888eb7f8e" "Quietify" false)
     (gatherThemeData "ad97bb70-0066-4e42-9b5f-173a5e42c6fc" "SuperPins" true)
     (gatherThemeData "d93e67f8-e5e1-401e-9b82-f9d5bab231e6" "Super Url Bar" true)
