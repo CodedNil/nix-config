@@ -8,9 +8,12 @@
   home.activation.updateDiscordSettings = lib.hm.dag.entryAfter [ ] ''
     configFile="$HOME/.config/discord/settings.json"
 
-    # Ensure the file exists
-    [ ! -f "$configFile" ] && echo '{}' > "$configFile"
+    # Check if the file exists; if not, create it with an empty JSON object
+    if [ ! -f "$configFile" ]; then
+      echo '{}' > "$configFile"
+    fi
 
+    # Create a temporary file for safe updating
     tmpFile=$(mktemp)
 
     # Update or add the specified JSON fields
@@ -23,6 +26,7 @@
       .openasar.quickstart = true
     ' "$configFile" > "$tmpFile" && mv "$tmpFile" "$configFile"
 
+    # Remove the temporary file
     rm -f "$tmpFile"
   '';
 

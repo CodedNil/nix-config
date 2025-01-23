@@ -57,7 +57,7 @@
           "contrast": 1.15, // 1.2
           "brightness": 0.6 // 0.475
         });
-        setNestedProperty(lucidSettings, 'state.colorSettings.isDynamicColor', true);
+        setNestedProperty(lucidSettings, 'state.colorSettings.isDynamicColor', false);
         setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.backgroundImageMode', 'none');
         setNestedProperty(lucidSettings, 'state.interfaceSettings.pagesSettings.playlistViewMode', 'compact');
         updateLocalStorage(lucidSettingsKey, lucidSettings);
