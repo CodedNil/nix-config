@@ -129,12 +129,12 @@
     programs.git.lfs.enable = true;
 
     # MPV media player with auto loop
-    programs.mpv = {
-      enable = true;
-      config = {
-        loop-file = "inf";
-      };
-    };
+    # programs.mpv = {
+    #   enable = true;
+    #   config = {
+    #     loop-file = "inf";
+    #   };
+    # };
 
     # App specific configs
     imports = [
@@ -256,7 +256,7 @@
       };
     };
 
-    # EasyEffects for noise suppression on mic
+    # EasyEffects for noise suppression on microphone
     services.easyeffects.enable = true;
 
     # The state version is required and should stay at the version you originally installed.
@@ -265,13 +265,18 @@
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Rust
+    cargo # RUST Package manager
+    rustc # RUST The rust compiler
+    clippy # RUST Linter for rust
+    rustfmt # RUST Formatter for rust
+    gcc # C++ Code linker
+    trunk # RUST To compile WASM apps
+
     # Development
-    rustup # RUST Installer for rust
     go # GO The go programming language
     nh # RUST Reimplements nix rebuild with visualised upgrade diff
     nixfmt-rfc-style # HASKELL Formatter for nix files
-    trunk # RUST To compile WASM apps
-    gcc # C++ code linker
     jq # C Command line JSON processor
     codeium # Codeium language server for vscode
 
@@ -286,9 +291,9 @@
 
     # File Management
     nautilus # GTK4 C File manager
-    ffmpegthumbnailer # Enables video thumbnails
+    ffmpegthumbnailer # C++ Enables video thumbnails
     gnome-disk-utility # GTK4 C Disk management utility
-    diskonaut # TRM RUST Disk usage analyzer in terminal
+    diskonaut # RUST Disk usage analyzer in terminal
     baobab # GTK4 VALA Disk usage analyzer
     snoop # GTK4 VALA File searching
     dconf-editor # GTK4 Vala Configuration editor

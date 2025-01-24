@@ -305,9 +305,6 @@
         };
       };
 
-      # Notification daemon
-      services.mako.enable = true;
-
       # Widgets and bars
       programs.eww = {
         enable = true;
