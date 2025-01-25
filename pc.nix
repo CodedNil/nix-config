@@ -38,7 +38,7 @@
 
     # ┌────────────────────────────────────┐
     # │                                    │
-    # │              HDMI-A-1              │
+    # │              HDMI-A-3              │
     # │            3840x2160@120           │
     # │                                    │
     # │                                    │ ┌──────────────┐
@@ -48,7 +48,7 @@
     # └────────────────────────────────────┘ └──────────────┘
 
     programs.niri.settings.outputs = {
-      "HDMI-A-1" = {
+      "HDMI-A-3" = {
         mode = {
           width = 3840;
           height = 2160;
@@ -79,8 +79,8 @@
 
     # Workspaces
     programs.niri.settings.workspaces = {
-      a_primary.open-on-output = "HDMI-A-1";
-      b_secondary.open-on-output = "HDMI-A-1";
+      a_primary.open-on-output = "HDMI-A-3";
+      b_secondary.open-on-output = "HDMI-A-3";
 
       a_spotify.open-on-output = "HDMI-A-2";
       b_chat.open-on-output = "HDMI-A-2";

@@ -314,7 +314,7 @@
       # On screen display
       services.swayosd = {
         enable = true;
-        display = "HDMI-A-1";
+        display = "HDMI-A-3";
         stylePath = ./configs/swayosd.css;
       };
 

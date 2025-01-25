@@ -22,7 +22,7 @@ ${EWW_CMD} open niri_scroller
         workspace_data=$(niri msg --json workspaces)
         
         # Parse JSON and categorize workspaces by output
-        eww update workspaces_1="$(echo "$workspace_data" | jq '[.[] | select(.output == "HDMI-A-1") | {id: .id, idx: .idx, name: .name, focused: .is_focused, active: .is_active, occupied: (.active_window_id != null)}] | sort_by(.id)')"
+        eww update workspaces_1="$(echo "$workspace_data" | jq '[.[] | select(.output == "HDMI-A-3") | {id: .id, idx: .idx, name: .name, focused: .is_focused, active: .is_active, occupied: (.active_window_id != null)}] | sort_by(.id)')"
         eww update workspaces_2="$(echo "$workspace_data" | jq '[.[] | select(.output == "HDMI-A-2") | {id: .id, idx: .idx, name: .name, focused: .is_focused, active: .is_active, occupied: (.active_window_id != null)}] | sort_by(.id)')"
     done
 ) &
