@@ -11,11 +11,11 @@
 
   # Required packages
   environment.systemPackages = with pkgs; [
-    xwayland-satellite
-    wlr-randr
-    playerctl
-    bc
-    bibata-cursors
+    xwayland-satellite # RUST A tool for managing XWayland windows
+    wlr-randr # C Wayland tool for managing display settings with wlroots
+    playerctl # C A command-line controller for media players
+    bc # Used in EWW
+    bibata-cursors # Stylish cursor theme
   ];
 
   # Niri

@@ -19,26 +19,10 @@
         ratatplex = "ssh plex@135.181.161.182";
       };
     };
-    programs.starship = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    programs.zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    programs.atuin = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    programs.yazi = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-    programs.eza = {
-      enable = true;
-      enableFishIntegration = true;
-    };
+
+    programs.starship.enable = true; # RUST: Shell prompt
+    programs.zoxide.enable = true; # RUST: Directory jumper
+    programs.atuin.enable = true; # RUST: Shell history manager
   };
 
   programs.fish.enable = true;
@@ -47,15 +31,20 @@
     font-awesome
     noto-fonts-emoji
 
-    just
-    bottom
-    tokei
-    wl-clipboard
+    # Development Tools
+    just # RUST: Command runner
+    bottom # RUST: Terminal process monitor
+    tokei # RUST: Code statistics tool
+    wl-clipboard # C: Wayland clipboard utilities
 
-    cryfs
-    sshfs
+    # Shell Enhancements
+    eza # RUST: Modern 'ls' replacement
+    yazi # RUST: Terminal file manager
+    bat # RUST: 'cat' clone with syntax highlighting
+    fd # RUST: Simple, fast 'find' alternative
 
-    bat
-    fd
+    # Filesystem Tools
+    cryfs # C++: Encrypted filesystem
+    sshfs # C: Filesystem client based on SSH
   ];
 }

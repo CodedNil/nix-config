@@ -128,14 +128,6 @@
     };
     programs.git.lfs.enable = true;
 
-    # MPV media player with auto loop
-    # programs.mpv = {
-    #   enable = true;
-    #   config = {
-    #     loop-file = "inf";
-    #   };
-    # };
-
     # App specific configs
     imports = [
       ./configs/discord.nix
@@ -201,8 +193,6 @@
       name = "VSCode Nix Config";
       exec = "code /home/dan/nix-config";
       icon = ./icons/nixos.svg;
-      type = "Application";
-      categories = [ "Development" ];
     };
 
     # Shortcuts to shutdown, reboot and logout
@@ -210,22 +200,16 @@
       name = "Shutdown";
       exec = "systemctl poweroff";
       icon = ./configs/eww/icons/shutdown.svg;
-      type = "Application";
-      categories = [ "System" ];
     };
     xdg.desktopEntries.reboot = {
       name = "Reboot";
       exec = "systemctl reboot";
       icon = ./configs/eww/icons/reboot.svg;
-      type = "Application";
-      categories = [ "System" ];
     };
     xdg.desktopEntries.logout = {
       name = "Logout";
       exec = "niri msg action quit";
       icon = ./configs/eww/icons/lock.svg;
-      type = "Application";
-      categories = [ "System" ];
     };
 
     # Nautilus settings
@@ -274,6 +258,7 @@
     trunk # RUST To compile WASM apps
 
     # Development
+    vscode # CSS JS Code editor
     go # GO The go programming language
     nh # RUST Reimplements nix rebuild with visualised upgrade diff
     nixfmt-rfc-style # HASKELL Formatter for nix files
@@ -281,22 +266,17 @@
     codeium # Codeium language server for vscode
 
     # Misc
-    vscode # CSS JS Code editor
-    gnome-maps # GTK4 JS Maps viewer
     gnome-text-editor # GTK4 C Simple text editor
     mission-center # GTK4 RUST System monitor
     blackbox-terminal # GTK4 VALA Terminal emulator
     seahorse # GTK4 C Gnome keyring manager
-    mousam # GTK4 PYTHON Pretty weather viewer
 
     # File Management
     nautilus # GTK4 C File manager
     ffmpegthumbnailer # C++ Enables video thumbnails
     gnome-disk-utility # GTK4 C Disk management utility
-    diskonaut # RUST Disk usage analyzer in terminal
     baobab # GTK4 VALA Disk usage analyzer
     snoop # GTK4 VALA File searching
-    dconf-editor # GTK4 Vala Configuration editor
 
     # Browsing
     inputs.zen-browser.packages."${system}".default # CSS JS Web browser
@@ -312,15 +292,12 @@
     # Communication
     teamspeak5_client # Voice chat client
 
-    # Gaming
-    prismlauncher # Minecraft launcher
-
     # Creative
     gimp # GTK3 C Image editor
     inkscape # GTK3 C++ Vector editor
   ];
   programs.steam.enable = true;
-  programs.nix-ld.enable = true;
+  programs.nix-ld.enable = true; # Run unpatched binaries, required for codeium
   programs.nix-ld.libraries = [ ];
 
   # This value determines the NixOS release from which the default settings for stateful data, like file locations and database versions on your system were taken.
