@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 
@@ -188,6 +189,47 @@
         };
       };
 
+    # RUST High-performance code editor
+    programs.zed-editor = {
+      enable = true;
+      extensions = [
+        "nix"
+        "toml"
+        "html"
+        "cargo-tom"
+        "just"
+      ];
+      userSettings = {
+        assistant = {
+          enabled = true;
+          version = "2";
+          ### PROVIDER OPTIONS
+          ### zed.dev models { claude-3-5-sonnet-latest } requires github connected
+          ### copilot_chat models { gpt-4o gpt-4 gpt-3.5-turbo o1-preview } requires github
+          default_model = {
+            provider = "zed.dev";
+            model = "claude-3-5-sonnet-latest";
+          };
+        };
+
+        hour_format = "hour24";
+        auto_update = false;
+
+        lsp = {
+          rust-analyzer.binary.path = lib.getExe pkgs.rust-analyzer;
+        };
+
+        theme = {
+          mode = "system";
+          light = "One Light";
+          dark = "Andromeda";
+        };
+        show_whitespaces = "all";
+        ui_font_size = 16;
+        buffer_font_size = 16;
+      };
+    };
+
     # NixConfig shortcut
     xdg.desktopEntries.vscodeNixConfig = {
       name = "VSCode Nix Config";
@@ -254,6 +296,7 @@
     rustc # RUST The rust compiler
     clippy # RUST Linter for rust
     rustfmt # RUST Formatter for rust
+    rust-analyzer # RUST Language server for rust
     gcc # C++ Code linker
     trunk # RUST To compile WASM apps
 

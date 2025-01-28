@@ -53,6 +53,7 @@ user_pref("zen.view.compact.hide-tabbar", false);
 user_pref("zen.view.compact.hide-toolbar", true);
 user_pref("zen.view.show-newtab-button-border-top", false);
 user_pref("zen.welcome-screen.seen", true);
+user_pref("zen.workspaces.open-new-tab-if-last-unpinned-tab-is-closed", false); // Prevents opening a new tab by default
 
 // Zen mods settings
 user_pref("uc.essentials.box-like-corners", true);
