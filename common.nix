@@ -186,6 +186,7 @@
             }
             + /src;
           overwriteAssets = true;
+          additionalCss = ".main-connectBar-connectBar {\n display: none !important;}";
         };
       };
 
